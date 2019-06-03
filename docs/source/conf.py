@@ -20,7 +20,7 @@ import django
 import sphinx_bootstrap_theme
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
-os.environ['DJANGO_SETTINGS_MODULE'] = 'alpha.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'alpha_home.settings'
 django.setup()
 # -- Project information -----------------------------------------------------
 
@@ -29,8 +29,8 @@ copyright = 'Ovchinnikov Vsevolod'
 author = 'Ovchinnikov Vsevolod'
 # The short X.Y version
 version = '3.1'
-# The full version, including alpha/beta/rc tags
-release = '3.1 alpha'
+# The full version, including alpha_home/beta/rc tags
+release = '3.1 alpha_home'
 
 # -- General configuration ---------------------------------------------------
 
@@ -134,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'alpha.tex', 'alpha\\_home Documentation',
+    (master_doc, 'alpha_home.tex', 'alpha_home\\_home Documentation',
      '304\\_mshp', 'manual'),
 ]
 
@@ -143,7 +143,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'alpha', 'alpha Documentation',
+    (master_doc, 'alpha_home', 'alpha_home Documentation',
      [author], 1)
 ]
 
@@ -153,8 +153,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'alpha', 'alpha Documentation',
-     author, 'alpha', 'One line description of project.',
+    (master_doc, 'alpha_home', 'alpha_home Documentation',
+     author, 'alpha_home', 'One line description of project.',
      'Miscellaneous'),
 ]
 

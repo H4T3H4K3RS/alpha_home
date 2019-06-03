@@ -2571,7 +2571,7 @@ else if (Prototype.Browser.IE) {
       return element;
     } else if (value < 0.00001) value = 0;
     style.filter = stripAlpha(filter) +
-      'alpha(opacity=' + (value * 100) + ')';
+      'alpha_home(opacity=' + (value * 100) + ')';
     return element;
   };
 
