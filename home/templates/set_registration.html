@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <form id="hidden" action="{% url 'set_signup' %}" method="post">
+        {% csrf_token %}
+        {{ form.delete }}
+    </form>
+</body>
+<script>
+    function show_window() {
+        const confirmation = confirm("Вы действительно хотите изменить состояние регистрации на \"" + "{{ on }}" + "\"?");
+        if (confirmation) {
+            const form = document.getElementById("hidden");
+            form.submit();
+        } else {
+            window.location.replace("{% url 'main' %}");
+        }
+    }
+    document.addEventListener("DOMContentLoaded", show_window);
+
+</script>
+
+</html>

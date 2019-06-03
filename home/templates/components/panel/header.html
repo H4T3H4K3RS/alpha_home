@@ -1,0 +1,12 @@
+{% load static %}
+<div class="column is-three-fifths animated flash">
+    <img src="{% static 'images/display.svg' %}" height="20px" width="20px">
+    Панель управления
+</div>
+<div class="column is-one-fifth animated bounceInLeft date-panel">
+    <img src="{% static 'images/calendar.svg' %}" height="20px" width="20px">
+    {{ date }}
+</div>
+<div class="column is-one-fifth animated bounceInLeft date-panel">
+    <p id="timedisplay">Err:5xx</p>
+</div>

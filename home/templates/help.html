@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Помощь</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' href="{% static 'landing/css/normalize.css' %}"/>
+    <link rel="manifest" href="/manifest.json"/>
+    <link rel="stylesheet" href="{% static 'bulma/css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'bulma/bulma.sass' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/png">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script> var OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+        OneSignal.init({appId: "cb29d800-22dc-4542-8f3a-4c9173bbe042",});
+    }); </script>
+</head>
+
+<body class="home">
+{% include 'components/navbar.html' %}
+<main class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <header class="col"></header>
+        </div>
+    </div>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Добро пожаловать в Alpha Home!</strong> Перед посещением нашего сайта мы рекомендуем ознакомиться с
+        инструкцией!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Как получить больше возможностей?</h4>
+        <p>Для удобного нахождения на сайте мы рекомендуем зарегистрироваться, а при пребывании на сайте быть
+            авторизированными.</p>
+        <hr>
+        <li>Обязательно зарегистрируйтесь для более удобного использования сайта здесь - <a href="{% url 'signup' %}">
+            регистрация </a></li>
+        <li>В следующие разы вы можете авторизироваться здесь - <a href="{% url 'login' %}"> авторизация </a></li>
+    </div>
+    <article class="message is-danger">
+        <div class="message-body">
+            <a href="{% url 'agreement' %}"><strong>Пользовательское соглашение</strong></a> для пребывания на сайте
+        </div>
+    </article>
+    <article class="message is-link">
+        <div class="message-body">
+            <p><strong>Популярные вопросы:</strong></p>
+            <ul>
+                <li>
+                    <p><em>Какие показания являются нормами для панели?</em></p>
+                    <a><p>Температура</p></a>
+                    <p>Отлично = 20-25 град</p>
+                    <p>Нормально = 8-20 град и 25-28 град</p>
+                    <p>Остальное = плохо</p>
+
+                    <a><p>Влажность</p></a>
+                    <p>Отлично = 30-60 %</p>
+                    <p>Нормально = 20-30 % и 60-70 %</p>
+                    <p>Остальное = плохо</p>
+
+                    <a><p>Давление</p></a>
+                    <p>Отлично = 900-1100 миллибар</p>
+                    <p>Нормально = 800-900 миллибар и 1100-1200 миллибар</p>
+                    <p>Остальное = плохо</p>
+
+                    <a><p>Концентрация углекислого газа</p></a>
+                    <p>Вы можете узнать в <a href="{% url 'panel' %}"><em>панеле</em></a> нажав на кнопку <img
+                            src="{% static 'images/info.svg' %}" alt="info" height="26px" width="26px"></p>
+                </li>
+                <br>
+                <li>
+                    <p><em>Почему датчик углекислого газа показывает неправильно концентрацию?</em></p>
+                    <p>Да, к сожаленю приходиться их калибровать для правильного отображения <a
+                            href="https://mysku.ru/blog/aliexpress/59397.html"><em>статья</em></a>,
+                        а также проверьте напряжение к датчику оно должно быть примерно равно ~ 5.0 В</p>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="message is-warning">
+        <div class="message-body">
+            Ниже приведены <strong>ссылки</strong>, которые возможно потерялись на сайте
+        </div>
+    </article>
+    <article class="message is-primary">
+        <div class="message-header">
+            <p>Пользователям</p>
+        </div>
+        <div class="message-body">
+            <p><a href="{% url 'products' %}">Каталог устройств</a></p>
+            <p><a href="{% url 'profile' %}">Профиль</a></p>
+            <p><a href="{% url 'recover_email_input' %}">Восстановление пароля</a></p>
+            <p><a href="{% url 'create_license' %}">Генерация лицензий для устройств</a></p>
+            <p><a href="https://bit.do/alpha_home_dev">Скачать приложения под ОС Android</a></p>
+            <p><a href="https://docs.google.com/uc?export=download&id=1h9fkT-hmD9vSSHhULNGpcwq9S2bJ9ntf">Скачать инструкцию</a></p>
+        </div>
+    </article>
+    <article class="message">
+        <div class="message-header">
+            <p>Разработчикам</p>
+        </div>
+        <div class="message-body">
+            <p><a href="/docs">Документация разработчика</a></p>
+            <p><a href="/patterns">Использованные паттерны</a></p>
+            <p><a href="https://beta.umtechn.ru">Beta Alpha Home</a></p>
+        </div>
+    </article>
+    <article class="message is-info">
+        <div class="message-header">
+            <p>Управляющим</p>
+        </div>
+        <div class="message-body">
+            <p><a href="/admin">Панель администрации</a></p>
+        </div>
+    </article>
+
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(53512972, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/53512972" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139390565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139390565-1');
+
+    </script>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

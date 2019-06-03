@@ -1,0 +1,11 @@
+django-allauth
+pytz
+dj-static==0.0.6
+requests==2.21.0
+Django==2.1.7
+pymysql
+django-recaptcha2
+sphinx
+coverage
+django-docs
+sphinx_bootstrap_theme

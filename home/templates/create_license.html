@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load recaptcha2 %}
+    {% recaptcha_init %}
+    <script>
+        window.onload = function() {
+            var $recaptcha = document.querySelector('#g-recaptcha-response');
+            if ($recaptcha) {
+                $recaptcha.setAttribute("required", "required");
+            }
+        };
+
+    </script>
+    <style>
+        #g-recaptcha-response {
+            display: block !important;
+            position: absolute;
+            margin: -78px 0 0 0 !important;
+            width: 302px !important;
+            height: 76px !important;
+            z-index: -999999;
+            opacity: 0;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<button onclick="add_lamp()" id="lamp">Добавить Лампу</button>
+<button onclick="add_display()" id="display">Добавить Дисплей</button>
+<button onclick="add_door()" id="door">Добавить Дверь</button>
+<button onclick="add_condition()" id="condition">Добавить Датчик Воздуха</button>
+<button onclick="del()" id="clear">Очистить форму</button>
+<form action="{% url 'create_license' %}" method="post">
+    {% csrf_token %}
+    {{ form.cmd }}
+    {{ form.recaptcha }}
+    <button type="submit">Получить код.</button>
+</form>
+Ваш код:
+<br>
+{{ code }}
+<script>
+    function add_lamp() {
+        let lamp = document.getElementById("lamp");
+        lamp.style.visibility = "hidden";
+        let form = document.getElementById("cmd");
+        form.value += '1'
+    }
+    function add_display() {
+        let display = document.getElementById("display");
+        display.style.visibility = "hidden";
+        let form = document.getElementById("cmd");
+        form.value += '2'
+    }
+    function add_door() {
+        let door = document.getElementById("door");
+        door.style.visibility = "hidden";
+        let form = document.getElementById("cmd");
+        form.value += '3'
+    }
+    function add_condition() {
+        let condition = document.getElementById("condition");
+        condition.style.visibility = "hidden";
+        let form = document.getElementById("cmd");
+        form.value += '4'
+    }
+    function del() {
+        let lamp = document.getElementById("lamp");
+        let condition = document.getElementById("condition");
+        let display = document.getElementById("display");
+        let door = document.getElementById("door");
+        condition.style.visibility = "visible";
+        lamp.style.visibility = "visible";
+        door.style.visibility = "visible";
+        display.style.visibility = "visible";
+        let form = document.getElementById("cmd");
+        form.value = "";
+    }
+</script>
+</body>
+</html>

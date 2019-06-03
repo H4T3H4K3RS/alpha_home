@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>home.forms &#8212; документация Alpha Home 3.1 alpha</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Alpha Home</a>
+        <span class="navbar-text navbar-version pull-left"><b>3.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Оглавление:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code.html">Документация разработчика</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Исходный код home.forms</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="k">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">snowpenguin.django.recaptcha2.fields</span> <span class="k">import</span> <span class="n">ReCaptchaField</span>
+<span class="kn">from</span> <span class="nn">snowpenguin.django.recaptcha2.widgets</span> <span class="k">import</span> <span class="n">ReCaptchaWidget</span>
+
+
+<div class="viewcode-block" id="RecoverForm"><a class="viewcode-back" href="../../code.html#home.forms.RecoverForm">[документация]</a><span class="k">class</span> <span class="nc">RecoverForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма восстановления пользователя :func:`home.views.recover`</span>
+
+<span class="sd">    :param email: поле ввода email&#39;a</span>
+<span class="sd">    :param recaptcha: поле recaptchav3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">EmailInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormEmail&#39;</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RecoverCodeForm"><a class="viewcode-back" href="../../code.html#home.forms.RecoverCodeForm">[документация]</a><span class="k">class</span> <span class="nc">RecoverCodeForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма для восстановления профиля, ввод кода :func:`home.views.recover`</span>
+
+<span class="sd">    :param code: поле ввода кода от 100000 до 999999, полученный по email</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">NumberInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialNumber&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;100000&#39;</span>
+            <span class="p">},</span>
+        <span class="p">),</span>
+        <span class="n">min_value</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+        <span class="n">max_value</span><span class="o">=</span><span class="mi">999999</span>
+    <span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NewPasswordForm"><a class="viewcode-back" href="../../code.html#home.forms.NewPasswordForm">[документация]</a><span class="k">class</span> <span class="nc">NewPasswordForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма ввода нового пароля :func:`home.views.set_password`</span>
+
+<span class="sd">    :param password: поле ввода новый пароль</span>
+<span class="sd">    :param password2: поле ввода потверждение нового пароля</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormPassword&#39;</span>
+            <span class="p">}</span>
+        <span class="p">))</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormPassword2&#39;</span>
+        <span class="p">}</span>
+    <span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">clean_password2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span>
+        <span class="k">if</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Passwords don</span><span class="se">\&#39;</span><span class="s1">t match.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LoginForm"><a class="viewcode-back" href="../../code.html#home.forms.LoginForm">[документация]</a><span class="k">class</span> <span class="nc">LoginForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма для авторизации :func:`home.views.login_page`</span>
+
+<span class="sd">    :param login: поле ввода логина</span>
+<span class="sd">    :param password: поле ввода пароля</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">login</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialLoginFormEmail&#39;</span>
+        <span class="p">}</span>
+    <span class="p">),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialLoginFormPassword&#39;</span>
+        <span class="p">}</span>
+    <span class="p">))</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UserRegistrationForm"><a class="viewcode-back" href="../../code.html#home.forms.UserRegistrationForm">[документация]</a><span class="k">class</span> <span class="nc">UserRegistrationForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма для регистрации :func:`home.views.register_page`</span>
+
+<span class="sd">    :param password: поле ввода пароля</span>
+<span class="sd">    :param password2: поле ввода потверждающего пароля</span>
+<span class="sd">    :param username: поле ввода никнейма</span>
+<span class="sd">    :param last_name: поле ввода фамилии</span>
+<span class="sd">    :param first_name: поле ввода имени</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormPassword&#39;</span>
+            <span class="p">}</span>
+        <span class="p">))</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormPassword2&#39;</span>
+        <span class="p">}</span>
+    <span class="p">))</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormUsername&#39;</span>
+        <span class="p">}</span>
+    <span class="p">))</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">EmailInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormEmail&#39;</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormLastName&#39;</span>
+        <span class="p">}</span>
+    <span class="p">))</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialRegisterFormFirstName&#39;</span>
+        <span class="p">}</span>
+    <span class="p">))</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clean_password2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span>
+        <span class="k">if</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Passwords don</span><span class="se">\&#39;</span><span class="s1">t match.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="AskForm"><a class="viewcode-back" href="../../code.html#home.forms.AskForm">[документация]</a><span class="k">class</span> <span class="nc">AskForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма для создания вопроcа :func:`home.views.ask`</span>
+
+<span class="sd">    :param Name: поле ввода имени</span>
+<span class="sd">    :param Email: поле ввода email&#39;a</span>
+<span class="sd">    :param Question: поле ввода вопроса</span>
+<span class="sd">    :param recaptcha: recaptcha v3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;materialContactFormName&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">Email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;materialContactFormEmail&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">Question</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s1">&#39;form-control md-textarea&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;materialContactFormMessage&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;rows&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="HomeForm"><a class="viewcode-back" href="../../code.html#home.forms.HomeForm">[документация]</a><span class="k">class</span> <span class="nc">HomeForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма ввода данных дома</span>
+
+<span class="sd">    :param Name: поле ввода названия</span>
+<span class="sd">    :param city: поле ввода города</span>
+<span class="sd">    :param recaptcha: recaptcha v3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Название&quot;</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">City</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Город&quot;</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EditHomeForm"><a class="viewcode-back" href="../../code.html#home.forms.EditHomeForm">[документация]</a><span class="k">class</span> <span class="nc">EditHomeForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма редактирования дома/квартиры</span>
+
+<span class="sd">    :param Name: название</span>
+<span class="sd">    :param City: город</span>
+<span class="sd">    :param recaptcha: recapctha v3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Название&quot;</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">City</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Город&quot;</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="HiddenForm"><a class="viewcode-back" href="../../code.html#home.forms.HiddenForm">[документация]</a><span class="k">class</span> <span class="nc">HiddenForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Невидимая форма для подтверждения удаления</span>
+
+<span class="sd">    :param delete: скрытое поле</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">delete</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">HiddenInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RoomForm"><a class="viewcode-back" href="../../code.html#home.forms.RoomForm">[документация]</a><span class="k">class</span> <span class="nc">RoomForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма создания новой комнаты</span>
+
+<span class="sd">    :param name: название комнаты</span>
+<span class="sd">    :param key: ключ активации</span>
+<span class="sd">    :param recaptcha: recapctha v3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Название&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Ключ Активации&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EditRoomForm"><a class="viewcode-back" href="../../code.html#home.forms.EditRoomForm">[документация]</a><span class="k">class</span> <span class="nc">EditRoomForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма изменения данных комнаты</span>
+
+<span class="sd">    :param name: название комнаты</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Название&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UploadImageForm"><a class="viewcode-back" href="../../code.html#home.forms.UploadImageForm">[документация]</a><span class="k">class</span> <span class="nc">UploadImageForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма загрузки файлов</span>
+
+<span class="sd">    :param file: загрузка файла</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">FileField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">FileInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/image&#39;</span><span class="p">}))</span></div>
+
+
+<div class="viewcode-block" id="LicenseForm"><a class="viewcode-back" href="../../code.html#home.forms.LicenseForm">[документация]</a><span class="k">class</span> <span class="nc">LicenseForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма для создания лицензионных ключей</span>
+<span class="sd">    :param cmd: какие датчики присутствуют в лицензии</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span>
+        <span class="n">max_value</span><span class="o">=</span><span class="mi">4321</span><span class="p">,</span>
+        <span class="n">min_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">NumberInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;cmd&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Команда&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProfileForm"><a class="viewcode-back" href="../../code.html#home.forms.ProfileForm">[документация]</a><span class="k">class</span> <span class="nc">ProfileForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Форма для регистрации :func:`home.views.profile`</span>
+
+<span class="sd">    :param password: поле ввода пароля</span>
+<span class="sd">    :param password2: поле ввода потверждающего пароля</span>
+<span class="sd">    :param username: поле ввода никнейма</span>
+<span class="sd">    :param last_name: поле ввода фамилии</span>
+<span class="sd">    :param first_name: поле ввода имени</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Новый пароль&#39;</span>
+            <span class="p">},</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;password2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Подтвердите пароль&#39;</span>
+        <span class="p">}</span>
+    <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Никнейм&#39;</span>
+        <span class="p">}</span>
+    <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">EmailInput</span><span class="p">(</span>
+            <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;your@email.com&#39;</span>
+            <span class="p">}</span>
+        <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Фамилия&#39;</span>
+        <span class="p">},</span>
+    <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;placeholder&#39;</span><span class="p">:</span> <span class="s1">&#39;Имя&#39;</span>
+        <span class="p">}</span>
+    <span class="p">),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">recaptcha</span> <span class="o">=</span> <span class="n">ReCaptchaField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">ReCaptchaWidget</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clean_password2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span>
+        <span class="k">if</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Passwords don</span><span class="se">\&#39;</span><span class="s1">t match.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cd</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Ovchinnikov Vsevolod.<br/>
+      Создано с помощью <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

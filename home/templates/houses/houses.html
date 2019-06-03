@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8"> {% load recaptcha2 %}
+    {% recaptcha_init %} <script>
+        window.onload = function() {
+            var $recaptcha = document.querySelector('#g-recaptcha-response');
+            if ($recaptcha) {
+                $recaptcha.setAttribute("required", "required");
+            }
+        };
+
+    </script>
+    <style>
+        #g-recaptcha-response {
+            display: block !important;
+            position: absolute;
+            margin: -78px 0 0 0 !important;
+            width: 302px !important;
+            height: 76px !important;
+            z-index: -999999;
+            opacity: 0;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <form method="POST" action="{% url 'edit' %}"> {{ error }} {% csrf_token %}
+        <h2>Дома/Квартиры: </h2>
+        <ul>
+            {% for house in houses %}
+            <li>
+                <strong>{{ house.name }} в г.{{ house.city }}</strong>
+
+                &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'edit_home' home=house.id %}"><input type="button" value="Изменить"></a>
+                <a href="{% url 'delete_home' home=house.id %}"><input type="button" value="Удалить"></a>
+                <br>
+            </li>
+            {% endfor %}
+        </ul>
+        {{ form.Name }}
+        {{ form.City }}
+        {{ form.recaptcha }}
+        <input type="submit" value="Добавить"> <a href="{% url 'panel' %}"><button type="button">Назад</button></a>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+{% load static %}
+<div class="api">
+    <div width="100%" height="auto" class="widgets">
+        <div class="weather-wrapper">
+            <div class="weather-card-{{ panel_style_primary }} card">
+                <div class="weather-icon">
+                    {% if api.condition == 'cloudy' %}
+                        {% include "components/panel/icons/cloudy.html" %}
+                    {% elif api.condition == 'clear' %}
+                        {% include "components/panel/icons/sunny_ico.html" %}
+                    {% elif api.condition == 'partly-cloudy' %}
+                        {% include "components/panel/icons/partly-cloudy.html" %}
+                    {% elif api.condition == 'overcast' or 'partly-cloudy-and-light-rain' or 'partly-cloudy-and-rain' or 'overcast-and-rain' or 'cloudy-and-light-rain' or 'overcast-and-light-rain' or 'cloudy-and-rain' %}
+                        {% include "components/panel/icons/fluries_ico.html" %}
+                    {% elif api.condition == 'overcast-thunderstorms-with-rain' %}
+                        {% include "components/panel/icons/thunder-storm_ico.html" %}
+                    {% else %}
+                        {% include "components/panel/icons/overcast.html" %}
+                    {% endif %}
+
+                </div>
+                <p class="weather-{{ panel_style_primary }}">
+                    Скорость ветра: <span class="weather-api-results">{{ api.wind_speed }} м/с</span>
+                    <br>
+                    Направление ветра: <span class="weather-api-results">{{ api.wind_dir }}</span>
+                    <br>
+                    Влажность: <span class="weather-api-results">{{ api.humidity }} мм</span>
+                    <br>
+                    Давление: <span class="weather-api-results">{{ api.pressure }} мм рт.ст.</span>
+                    <br>
+                    Осадки: <span class="weather-api-results">{{ api.precipitation_mm }} мм</span>
+                    <br>
+                    Вероятность осадков: <span class="weather-api-results">{{ api.precipitation }} %</span>
+                </p>
+                <h1 style="margin-bottom: 40px">{{ api.temperature }}°/{{ api.feels_like }}°</h1>
+                <p style="margin-bottom: 40px" class="city">{{ houses.current.city }}</p>
+            </div>
+        </div>
+        <div class="outer">
+            <div class="middle">
+                <div class="inner-{{ panel_style_primary }}">
+                    <div class="description-{{ panel_style_primary }}">
+                        <div class="description_widget_with_img">
+                            <div>
+                                <h1>Состояние воздуха</h1>
+                                <p style="color: coral">{{ rooms.current.name }}</p>
+                                {# <p>Здесь вы можете посмотреть информацию с датчиков, которые находятся у вас дома.</p>#}
+                            </div>
+                            <div>
+                                <img src="{% static 'images/info.svg' %}" alt="info" height="26px" width="26px"
+                                     onclick="infoFunc()">
+                            </div>
+                            <script>
+                                function infoFunc() {
+                                    var element = document.getElementById("img_modal");
+                                    element.classList.add("is-active");
+                                }
+
+                                function infoFuncClose() {
+                                    var element = document.getElementById("img_modal");
+                                    element.classList.remove("is-active");
+                                }
+                            </script>
+                            <div class="modal" id="img_modal">
+                                <div class="modal-background"></div>
+                                <div class="modal-content">
+                                    <p class="image">
+                                        <img src="{% static 'images/co2.jpg' %}" alt="co2 for people">
+                                    </p>
+                                </div>
+                                <button class="modal-close is-large" aria-label="close"
+                                        onclick="infoFuncClose()"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="focalTable">
+                        <div class="focalRow">
+                            <div class="focalCell-{{ panel_style_primary }}">
+                                <h2 class="error_data">
+                                    <img src="{% static 'images/hot.svg' %}" height="20px" width="20px">
+                                    Температура</h2>
+
+                                {% if condition.temperature > 20 and condition.temperature < 25 %}
+                                    <div class="good-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame" class="good-data">
+                                            {% if condition != 0 %}{{ condition.temperature }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>&deg;C</p>
+                                    </div>
+                                {% elif condition.temperature > 8 and condition.temperature < 28 %}
+                                    <div class="warning-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame" class="warning-data">
+                                            {% if condition != 0 %}{{ condition.temperature }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>&deg;C</p>
+                                    </div>
+                                {% else %}
+                                    <div class="danger-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame" class="danger-data">
+                                            {% if condition != 0 %}{{ condition.temperature }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>&deg;C</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+
+                            <div class="focalCell-{{ panel_style_primary }}">
+                                <h2 class="error_data">
+                                    <img src="{% static 'images/temperature.svg' %}" height="20px" width="20px">
+                                    Влажность</h2>
+
+                                {% if condition.humidity > 30 and condition.humidity < 60 %}
+                                    <div class="good-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame2" class="good-data">
+                                            {% if condition != 0 %}{{ condition.humidity }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>%</p>
+                                    </div>
+                                {% elif condition.humidity > 20 and condition.humidity < 70 %}
+                                    <div class="warning-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame2" class="warning-data">
+                                            {% if condition != 0 %}{{ condition.humidity }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>%</p>
+                                    </div>
+                                {% else %}
+                                    <div class="danger-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame2" class="danger-data">
+                                            {% if condition != 0 %}{{ condition.humidity }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>%</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="focalRow">
+                            <div class="focalCell-{{ panel_style_primary }}">
+                                <h2 class="error_data">
+                                    <img src="{% static 'images/pressure.svg' %}" height="20px" width="20px">
+                                    Давление</h2>
+
+                                {% if condition.pressure > 900 and condition.pressure < 1100 %}
+                                    <div class="good-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame3"
+                                            class="good-data">
+                                            {% if condition != 0 %}{{ condition.pressure }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>mbar</p>
+                                    </div>
+                                {% elif condition.pressure > 800 and condition.pressure < 1200 %}
+                                    <div class="warning-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame3"
+                                            class="warning-data">
+                                            {% if condition != 0 %}{{ condition.pressure }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>mbar</p>
+                                    </div>
+                                {% else %}
+                                    <div class="danger-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame3"
+                                            class="danger-data">
+                                            {% if condition != 0 %}{{ condition.pressure }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>mbar</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="focalCell-{{ panel_style_primary }}">
+                                <h2 class="error_data">
+                                    <img src="{% static 'images/co2.svg' %}" height="20px" width="20px">
+                                    Углекислый газ</h2>
+                                {% if condition.c02 < 600 %}
+                                    <div class="good-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame4"
+                                            class="good-data">
+                                            {% if condition != 0 %}{{ condition.co2 }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>ppm</p>
+                                    </div>
+                                {% elif condition.co2 >= 600 and condition.co2 < 1000 %}
+                                    <div class="warning-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame4"
+                                            class="warning-data">
+                                            {% if condition != 0 %}{{ condition.co2 }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>ppm</p>
+                                    </div>
+                                {% else %}
+                                    <div class="danger-data">
+                                        <h3 style="text-decoration: none" id="inputFullFrame4"
+                                            class="danger-data">
+                                            {% if condition != 0 %}{{ condition.co2 }}{% else %}Нет
+                                                данных{% endif %}</h3>
+                                        <p>ppm</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

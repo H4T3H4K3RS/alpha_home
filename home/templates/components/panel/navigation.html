@@ -1,0 +1,37 @@
+{% load static %}
+<nav class="navbar is-{{ panel_style_primary }}" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'main' %}">
+            <img src="{% static 'images/alpha.png' %}" width="112" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'help' %}">Помощь</a>
+            <a class="navbar-item" href="{% url 'support' %}">Тех. Поддержка</a>
+            <a class="navbar-item" href="{% url 'products' %}">Устройства</a>
+        </div>
+    </div>
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <div class="buttons">
+                {% if not auto %}
+                    <a class="button" href="{% url 'panel' %}auto/">Автоматическая тема</a>
+                {% endif %}
+                <a class="button is-{{ panel_style_secondary }}" href="{% url 'panel' %}{{ panel_style_secondary }}/">
+                    {% if panel_style_primary == "light" %}Темная тема{% else %}Светлая тема{% endif %}</a>
+                <a href="{% url 'profile' %}" class="button is-{{ panel_style_primary }}">{{ request.user }}</a>
+                <a href="{% url 'logout' %}" class="button">Выйти</a></li>
+            </div>
+        </div>
+    </div>
+    </div>
+</nav>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <form action="{% url 'edit_room' home=home.id room=room.id %}" method="post">
+        {% csrf_token %}
+        {{ form.name }}
+        <input type="submit" value="Сохранить"> <a href="{% url 'edit' %}"><button type="button">Назад</button></a>
+    </form>
+    <script>
+        function set_values() {
+            document.getElementById("name").value = "{{ room.name }}";
+        }
+        document.addEventListener("DOMContentLoaded", set_values);
+
+    </script>
+</body>
+
+</html>

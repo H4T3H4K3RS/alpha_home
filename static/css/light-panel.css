@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Didact+Gothic');
+
+body {
+    font-family: 'Comfortaa', cursive;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+html{
+    background-color: rgba(5, 5, 5, 0.25);
+}
+
+.header_datetime {
+    text-align: center;
+    font-size: 18px;
+}
+
+@media (min-width: 769px) {
+    .header_datetime {
+        text-align: left;
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header_datetime {
+        text-align: left;
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1366px) {
+    .header_datetime {
+        text-align: left;
+        font-size: 23px;
+    }
+}
+
+main {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.border {
+    margin-top: 5px;
+    border: 1px solid black;
+}

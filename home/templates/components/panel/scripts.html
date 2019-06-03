@@ -1,0 +1,7 @@
+<a class="button is-fullwidth is-success" href="{% url 'relay_room_on' %}">Включить свет в {{ rooms.current.name }}</a>
+<br>
+<a class="button is-fullwidth is-warning" href="{% url 'relay_room_off' %}">Выключить свет в {{ rooms.current.name }}</a>
+<br>
+<a class="button is-fullwidth is-primary" href="{% url 'relay_house_on' %}">Включить питание в {{ houses.current.name }}</a>
+<br>
+<a class="button is-fullwidth is-danger" href="{% url 'relay_house_off' %}">Отключить питание в {{ houses.current.name }}</a>

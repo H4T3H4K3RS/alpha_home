@@ -1,0 +1,114 @@
+@media all and (min-width: 1360px) {
+    html, body {
+        overflow: hidden;
+    }
+}
+
+@-webkit-keyframes good {
+    0% {
+        color: green;
+    }
+    50% {
+        color: #857f7f;
+    }
+    51% {
+        color: green;
+    }
+    100% {
+        color: #857f7f;
+    }
+}
+
+.good-data {
+    color: #857f7f;
+    transition: color 1s;
+    -webkit-animation-name: good;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+@-webkit-keyframes warning {
+    0% {
+        color: yellow;
+    }
+    50% {
+        color: #857f7f;
+    }
+    51% {
+        color: yellow;
+    }
+    100% {
+        color: #857f7f;
+    }
+}
+
+.warning-data {
+    color: #857f7f;
+    transition: color 1s;
+    -webkit-animation-name: warning;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+@-webkit-keyframes danger {
+    0% {
+        color: red;
+    }
+    50% {
+        color: #857f7f;
+    }
+    51% {
+        color: red;
+    }
+    100% {
+        color: #857f7f;
+    }
+}
+
+.danger-data {
+    color: #857f7f;
+    transition: color 1s;
+    -webkit-animation-name: danger;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+@-webkit-keyframes redGray {
+    0% {
+        color: #857f7f;
+    }
+    50% {
+        color: rgb(116,251,218);
+    }
+    51% {
+        color: #857f7f;
+    }
+    100% {
+        color: rgb(75, 160, 139);
+    }
+}
+
+.error_data {
+    color: #857f7f;
+    transition: color 1.5s;
+    -webkit-animation-name: redGray;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+.description_widget_with_img {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+.widgets {
+    display: flex;
+    display: -moz-flex;
+}
+
+@media all and (orientation: portrait) {
+    .date-panel {
+        display: none;
+    }
+}

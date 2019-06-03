@@ -1,0 +1,31 @@
+<a class="button is-fullwidth is-warning is-inverted" onclick="show_modal(2)">{{ rooms.current.name }}</a>
+
+<div class="modal" id="modal2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title"><b>КОМНАТЫ</b></p>
+            <button class="delete" aria-label="close" onclick="close_modal(2)"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="outer">
+                <div class="middle">
+                    <div class="inner">
+                    <div class="description">
+                            <h3 style="color: #404040;">Комнаты в {{ houses.current.name }}</h3>
+                        </div>
+                        {% for room in rooms.other %}
+                            <a href="{% url 'change_room' room_id=room.id %}">{{ room.name }}</a>
+                            <br>
+                        {% endfor %}
+                        <span style="color: #ff253e;">{% if rooms.other|length == 0 %}Добавлена только одна комната{% endif %}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button" onclick="close_modal(2)">Закрыть</button>
+            <button class="button"><a href="{% url 'edit_home' home=houses.current.id %}">{% if rooms.other|length != 0 %}Редактировать{% else %}Добавить{% endif %}</a></button>
+        </footer>
+    </div>
+</div>

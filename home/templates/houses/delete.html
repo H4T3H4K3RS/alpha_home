@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <form id="hidden" action="{% url 'delete_home' home=home.id %}" method="post">
+        {% csrf_token %}
+        {{ form.delete }}
+    </form>
+</body>
+<script>
+    function show_window() {
+        const confirmation = confirm("Вы действительно хотите удалить дом \"" + "{{ home.name }}" + "\", расположенный в г.{{ home.city }}?");
+        if (confirmation) {
+            const form = document.getElementById("hidden");
+            form.submit();
+        } else {
+            window.location.replace("{% url 'edit' %}");
+        }
+    }
+    document.addEventListener("DOMContentLoaded", show_window);
+
+</script>
+
+</html>

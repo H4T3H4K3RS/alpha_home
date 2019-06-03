@@ -1,0 +1,37 @@
+.api {
+    -webkit-column-gap: 2px;
+    -moz-column-gap: 2px;
+    column-gap: 2px;
+    overflow: hidden;
+    margin: 0;
+}
+
+.api p {
+    width: 100%;
+    height: auto;
+}
+
+
+@media screen and (max-width: 767px) {
+	.api {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+	.api div {
+	    margin: 0;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .api {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+    .api div {
+        margin: 0;
+        width: 200px;
+    }
+}

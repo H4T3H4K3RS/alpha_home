@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru" xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Каталог Home</title>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/rgb.svg' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'bulma/css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'bulma/bulma.sass' %}">
+    <script src="{% static 'js/bulma-manu-burger.js' %}"></script>
+</head>
+<body>
+<header>
+    {% include 'components/navbar.html' %}
+</header>
+
+<main>
+
+    {% for item in magazine %}
+    <div class="card" style="margin: 10px;">
+        <div class="card-image">
+            <figure class="image is-4by3">
+                <img src="{{ item.image }}" onerror="this.src='{% static 'images/img_404.jpg' %}'" alt="Placeholder image">
+            </figure>
+        </div>
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <img src="{{ item.other_img }}" onerror="this.src='{% static 'images/file_err.svg' %}'" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-4">{{ item.name }}</p>
+                    <p class="subtitle is-6"><strong>Версия:</strong> v{{ item.version }}</p>
+                </div>
+            </div>
+
+            <div class="content">
+                {{ item.description }}
+                <br>
+                <strong>Компоненты:</strong> {{ item.components }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+</main>
+
+<footer>
+
+</footer>
+
+</body>
+</html>

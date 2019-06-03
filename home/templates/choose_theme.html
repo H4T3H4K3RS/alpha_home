@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
+    <title>Выбор темы</title>
+    <style>
+        html {
+            text-align: center;
+            background-image: url("https://picsum.photos/1920/1080/?random");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100%;
+            color: #F2F0CE;
+            font-size: 90px;
+        }
+
+        @media (min-width: 350px) and (max-width: 419px) {
+
+            /*xxxxs*/
+            .desktop {
+                display: none;
+            }
+
+            .mobile {
+                display: block;
+            }
+
+            .btn {
+                padding: 1px 5px;
+                font-size: 10px;
+                line-height: 1.5;
+                border-radius: 3px;
+            }
+
+        }
+
+        @media (min-width: 420px) and (max-width: 449px) {
+
+            /*xxxs*/
+            .desktop {
+                display: none;
+            }
+
+            .mobile {
+                display: block;
+            }
+
+            .btn {
+                padding: 1px 5px;
+                font-size: 15px;
+                line-height: 1.5;
+                border-radius: 3px;
+            }
+
+        }
+
+        @media (min-width: 450px) and (max-width: 509px) {
+
+            /*xxs*/
+            .desktop {
+                display: none;
+            }
+
+            .mobile {
+                display: block;
+            }
+
+            .btn {
+                padding: 1px 5px;
+                font-size: 20px;
+                line-height: 1.5;
+                border-radius: 3px;
+            }
+
+        }
+
+        @media (min-width: 510px) and (max-width: 767px) {
+
+            /*xs*/
+            .desktop {
+                display: none;
+            }
+
+            .mobile {
+                display: block;
+            }
+
+            .btn {
+                padding: 1px 5px;
+                font-size: 25px;
+                line-height: 1.5;
+                border-radius: 3px;
+            }
+
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+
+            /*sm*/
+            .desktop {
+                display: block;
+            }
+
+            .mobile {
+                display: none;
+            }
+
+            .btn {
+                padding: 5px 10px;
+                font-size: 37px;
+                line-height: 1.5;
+                border-radius: 3px;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+
+            /*md*/
+            .desktop {
+                display: block;
+            }
+
+            .mobile {
+                display: none;
+            }
+
+            .btn {
+                padding: 6px 12px;
+                font-size: 44px;
+                line-height: 1.42857143;
+                border-radius: 4px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+
+            /*lg*/
+            .desktop {
+                display: block;
+            }
+
+            .mobile {
+                display: none;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 51px;
+                line-height: 1.3333333;
+                border-radius: 6px;
+            }
+        }
+
+        .choose_theme_light {
+            background-color: #e3e3e3;
+        }
+
+        .choose_theme_dark {
+            background-color: #363636;
+        }
+
+        .choose_theme_dark a {
+            color: #e3e3e3;
+            text-decoration: none;
+        }
+
+        .choose_theme_light a {
+            color: #363636;
+            text-decoration: none;
+        }
+
+        .centered_desktop {
+            position: fixed;
+            /* or absolute */
+            top: 50%;
+            left: 50%;
+
+            background: #f0f0f0;
+
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .container_theme {
+            padding: 30px;
+            font-size: 50px;
+            cursor: pointer;
+        }
+
+    </style>
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "cb29d800-22dc-4542-8f3a-4c9173bbe042",
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(53512972, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/53512972" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139390565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139390565-1');
+
+    </script>
+
+
+    <div class="desktop">
+        <div class="centered_desktop">
+            <div style="background-color: black;" class="container_theme"><a href="/panel/dark/" style="color: wheat;">Тёмная
+                    темa</a></div>
+            <div style="background-color: floralwhite;" class="container_theme"><a style="color: black;" href="/panel/light/">Светлая тема</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="mobile">
+        <div class="column is-centered">
+            <div class="choose_theme_dark btn" style="margin-top: 20%; margin-bottom: 10%;"><a href="/panel/dark/">Тёмная
+                    темa</a></div>
+            <div class="choose_theme_light btn"><a href="/panel/light/">Светлая тема</a></div>
+        </div>
+    </div>
+</body>
+
+</html>

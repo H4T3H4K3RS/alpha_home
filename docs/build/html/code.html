@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Документация разработчика &#8212; документация Alpha Home 3.1 alpha</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="overview.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Alpha Home</a>
+        <span class="navbar-text navbar-version pull-left"><b>3.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Оглавление:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Документация разработчика</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Документация разработчика</a><ul>
+<li><a class="reference internal" href="#module-home.models">Модели в БД</a></li>
+<li><a class="reference internal" href="#module-home.forms">Используемые формы</a></li>
+<li><a class="reference internal" href="#module-home.views">View-функции</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Добро пожаловать в документацию для разработчиков."><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Добро пожалов...</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/code.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="id1">
+<h1>Документация разработчика<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="module-home.models">
+<span id="id2"></span><h2>Модели в БД<a class="headerlink" href="#module-home.models" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="class">
+<dt id="home.models.CodeCondition">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">CodeCondition</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#CodeCondition"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.CodeCondition" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Код для перезаписи значений сенсора состояния воздуха</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>room</strong> – комната</p></li>
+<li><p><strong>code</strong> – код для перезаписи значений датчика</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.CodeCondition.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.CodeCondition.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.CodeCondition.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.CodeCondition.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.CodeDisplay">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">CodeDisplay</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#CodeDisplay"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.CodeDisplay" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Код для перезаписи значений сенсора лампы</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>room</strong> – комната</p></li>
+<li><p><strong>code</strong> – код для перезаписи значений датчика</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.CodeDisplay.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.CodeDisplay.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.CodeDisplay.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.CodeDisplay.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.CodeDoor">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">CodeDoor</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#CodeDoor"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.CodeDoor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Код для перезаписи значений сенсора двери</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>room</strong> – комната</p></li>
+<li><p><strong>code</strong> – код для перезаписи значений датчика</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.CodeDoor.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.CodeDoor.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.CodeDoor.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.CodeDoor.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.CodeRelay">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">CodeRelay</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#CodeRelay"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.CodeRelay" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Код для перезаписи значений сенсора лампы</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>room</strong> – комната</p></li>
+<li><p><strong>code</strong> – код для перезаписи значений датчика</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.CodeRelay.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.CodeRelay.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.CodeRelay.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.CodeRelay.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Condition">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Condition</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Condition"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Condition" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для сенсора состояния воздуха</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> – код доступа к данному датчику</p></li>
+<li><p><strong>room</strong> – комната нахождения датчика</p></li>
+<li><p><strong>temperature</strong> – температура</p></li>
+<li><p><strong>pressure</strong> – давление</p></li>
+<li><p><strong>co2</strong> – количество co2</p></li>
+<li><p><strong>humidity</strong> – влажность воздуха</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Condition.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Condition.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Condition.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Condition.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Display">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Display</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Display"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Display" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для сенсора лампы</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> – код доступа к данному датчику</p></li>
+<li><p><strong>room</strong> – комната</p></li>
+<li><p><strong>number</strong> – название датчика</p></li>
+<li><p><strong>switched</strong> – включение лампочки</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Display.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Display.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Display.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Display.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Door">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Door</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Door"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Door" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для сенсора двери</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> – код доступа к данному датчику</p></li>
+<li><p><strong>room</strong> – комната нахождения датчика</p></li>
+<li><p><strong>opened</strong> – открыта ли дверь</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Door.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Door.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Door.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Door.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Home">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Home</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Home"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Home" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для хранения дома</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theme</strong> – тема</p></li>
+<li><p><strong>name</strong> – название</p></li>
+<li><p><strong>city</strong> – город</p></li>
+<li><p><strong>user</strong> – ForeignKey к модели <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.models.User</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Home.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Home.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Home.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Home.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.LicenseCode">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">LicenseCode</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#LicenseCode"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.LicenseCode" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель лицензионного ключа</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> – активационный ключ лицензии</p></li>
+<li><p><strong>type</strong> – какие устройства есть в лицензии 1 - есть лампа 2 - дисплей 3 - дверь 4 - датчик воздуха</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.LicenseCode.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.LicenseCode.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.LicenseCode.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.LicenseCode.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Magazine">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Magazine</code><span class="sig-paren">(</span><em>id</em>, <em>name</em>, <em>version</em>, <em>price</em>, <em>image</em>, <em>components</em>, <em>other_img</em>, <em>description</em>, <em>license</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Magazine"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Magazine" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="exception">
+<dt id="home.models.Magazine.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Magazine.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Magazine.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Magazine.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.PasswordRecovery">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">PasswordRecovery</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#PasswordRecovery"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.PasswordRecovery" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для восстановления пароля</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>active</strong> – параметр активности</p></li>
+<li><p><strong>token_1</strong> – первый токен</p></li>
+<li><p><strong>token_2</strong> – второй токен</p></li>
+<li><p><strong>email</strong> – email</p></li>
+<li><p><strong>code</strong> – код</p></li>
+<li><p><strong>expires</strong> – время окончания работы токенов</p></li>
+<li><p><strong>confirm_token_1</strong> – первый токен</p></li>
+<li><p><strong>confirm_token_2</strong> – второй токен</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.PasswordRecovery.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.PasswordRecovery.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.PasswordRecovery.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.PasswordRecovery.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Personalization">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Personalization</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Personalization"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Personalization" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для хранения персонализации</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theme</strong> – тема</p></li>
+<li><p><strong>user</strong> – ForeignKey к модели <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.models.User</span></code></p></li>
+<li><p><strong>room</strong> – комната, которая открывается в панели</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Personalization.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Personalization.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Personalization.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Personalization.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Picture">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Picture</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Picture"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Picture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для загрузки фото</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> – изображение</p></li>
+<li><p><strong>owner</strong> – пользователь загрузивший изображение</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Picture.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Picture.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Picture.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Picture.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Relay">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Relay</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Relay"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Relay" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для сенсора лампы</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>code</strong> – код доступа к данному датчику</p></li>
+<li><p><strong>room</strong> – комната</p></li>
+<li><p><strong>switched</strong> – включение лампочки</p></li>
+<li><p><strong>color</strong> – цвет лампы</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Relay.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Relay.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Relay.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Relay.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.Room">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">Room</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#Room"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.Room" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основная модель для хранения квартир</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flat</strong> – квартира</p></li>
+<li><p><strong>name</strong> – название</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="home.models.Room.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.Room.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.Room.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.Room.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="home.models.SignUp">
+<em class="property">class </em><code class="descclassname">home.models.</code><code class="descname">SignUp</code><span class="sig-paren">(</span><em>id</em>, <em>active</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/models.html#SignUp"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.models.SignUp" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="exception">
+<dt id="home.models.SignUp.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#home.models.SignUp.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="home.models.SignUp.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#home.models.SignUp.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-home.forms">
+<span id="id3"></span><h2>Используемые формы<a class="headerlink" href="#module-home.forms" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="class">
+<dt id="home.forms.AskForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">AskForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#AskForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.AskForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для создания вопроcа <a class="reference internal" href="#home.views.ask" title="home.views.ask"><code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.ask()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Name</strong> – поле ввода имени</p></li>
+<li><p><strong>Email</strong> – поле ввода email’a</p></li>
+<li><p><strong>Question</strong> – поле ввода вопроса</p></li>
+<li><p><strong>recaptcha</strong> – recaptcha v3</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.EditHomeForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">EditHomeForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#EditHomeForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.EditHomeForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма редактирования дома/квартиры</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Name</strong> – название</p></li>
+<li><p><strong>City</strong> – город</p></li>
+<li><p><strong>recaptcha</strong> – recapctha v3</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.EditRoomForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">EditRoomForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#EditRoomForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.EditRoomForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма изменения данных комнаты</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>name</strong> – название комнаты</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.HiddenForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">HiddenForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#HiddenForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.HiddenForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Невидимая форма для подтверждения удаления</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>delete</strong> – скрытое поле</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.HomeForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">HomeForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#HomeForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.HomeForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма ввода данных дома</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Name</strong> – поле ввода названия</p></li>
+<li><p><strong>city</strong> – поле ввода города</p></li>
+<li><p><strong>recaptcha</strong> – recaptcha v3</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.LicenseForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">LicenseForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#LicenseForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.LicenseForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для создания лицензионных ключей
+:param cmd: какие датчики присутствуют в лицензии</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.LoginForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">LoginForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#LoginForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.LoginForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для авторизации <code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.login_page()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>login</strong> – поле ввода логина</p></li>
+<li><p><strong>password</strong> – поле ввода пароля</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.NewPasswordForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">NewPasswordForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#NewPasswordForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.NewPasswordForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма ввода нового пароля <a class="reference internal" href="#home.views.set_password" title="home.views.set_password"><code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.set_password()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>password</strong> – поле ввода новый пароль</p></li>
+<li><p><strong>password2</strong> – поле ввода потверждение нового пароля</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.ProfileForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">ProfileForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#ProfileForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.ProfileForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для регистрации <a class="reference internal" href="#home.views.profile" title="home.views.profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.profile()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>password</strong> – поле ввода пароля</p></li>
+<li><p><strong>password2</strong> – поле ввода потверждающего пароля</p></li>
+<li><p><strong>username</strong> – поле ввода никнейма</p></li>
+<li><p><strong>last_name</strong> – поле ввода фамилии</p></li>
+<li><p><strong>first_name</strong> – поле ввода имени</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.RecoverCodeForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">RecoverCodeForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#RecoverCodeForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.RecoverCodeForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для восстановления профиля, ввод кода <a class="reference internal" href="#home.views.recover" title="home.views.recover"><code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.recover()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>code</strong> – поле ввода кода от 100000 до 999999, полученный по email</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.RecoverForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">RecoverForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#RecoverForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.RecoverForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма восстановления пользователя <a class="reference internal" href="#home.views.recover" title="home.views.recover"><code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.recover()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email</strong> – поле ввода email’a</p></li>
+<li><p><strong>recaptcha</strong> – поле recaptchav3</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.RoomForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">RoomForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#RoomForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.RoomForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма создания новой комнаты</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – название комнаты</p></li>
+<li><p><strong>key</strong> – ключ активации</p></li>
+<li><p><strong>recaptcha</strong> – recapctha v3</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.UploadImageForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">UploadImageForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>field_order=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#UploadImageForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.UploadImageForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма загрузки файлов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>file</strong> – загрузка файла</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="home.forms.UserRegistrationForm">
+<em class="property">class </em><code class="descclassname">home.forms.</code><code class="descname">UserRegistrationForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id='id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em>, <em>instance=None</em>, <em>use_required_attribute=None</em>, <em>renderer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/forms.html#UserRegistrationForm"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.forms.UserRegistrationForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для регистрации <a class="reference internal" href="#home.views.register_page" title="home.views.register_page"><code class="xref py py-func docutils literal notranslate"><span class="pre">home.views.register_page()</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>password</strong> – поле ввода пароля</p></li>
+<li><p><strong>password2</strong> – поле ввода потверждающего пароля</p></li>
+<li><p><strong>username</strong> – поле ввода никнейма</p></li>
+<li><p><strong>last_name</strong> – поле ввода фамилии</p></li>
+<li><p><strong>first_name</strong> – поле ввода имени</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-home.views">
+<span id="view"></span><h2>View-функции<a class="headerlink" href="#module-home.views" title="Ссылка на этот заголовок">¶</a></h2>
+<p>View-функции</p>
+<dl class="function">
+<dt id="home.views.add_data">
+<code class="descclassname">home.views.</code><code class="descname">add_data</code><span class="sig-paren">(</span><em>request</em>, <em>context=None</em>, <em>test=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#add_data"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.add_data" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавление данных датчиков на панель</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – контекст, который нужно дополнить</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.add_room">
+<code class="descclassname">home.views.</code><code class="descname">add_room</code><span class="sig-paren">(</span><em>request</em>, <em>home</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#add_room"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.add_room" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница добавления комнаты</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+<li><p><strong>home</strong> – идентификатор дома</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон редактирования комнаты</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.agreement">
+<code class="descclassname">home.views.</code><code class="descname">agreement</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#agreement"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.agreement" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница соглашения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpResponse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.ask">
+<code class="descclassname">home.views.</code><code class="descname">ask</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#ask"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.ask" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Стрвница для отправки вопросов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на главную страницу</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.authorize_page">
+<code class="descclassname">home.views.</code><code class="descname">authorize_page</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#authorize_page"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.authorize_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница авторизации</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Перенаправление на главную страницу</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.change_house">
+<code class="descclassname">home.views.</code><code class="descname">change_house</code><span class="sig-paren">(</span><em>request</em>, <em>house_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#change_house"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.change_house" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница редактирования домов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>house_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – идентификатор дома, на который требуется переключиться</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на панель</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.change_room">
+<code class="descclassname">home.views.</code><code class="descname">change_room</code><span class="sig-paren">(</span><em>request</em>, <em>room_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#change_room"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.change_room" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница редактирования домов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>room_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – идентификатор комнаты, на которую требуется переключиться</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на панель</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.check_key">
+<code class="descclassname">home.views.</code><code class="descname">check_key</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#check_key"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.check_key" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверка ключа активации
+:param key: ключ активации, который нужно проверить
+:type key: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+:return: Правильный ли ключ
+:rtype: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.create_license">
+<code class="descclassname">home.views.</code><code class="descname">create_license</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#create_license"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.create_license" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница создания кода активации для устройства</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон создания кода активации</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.delete_home">
+<code class="descclassname">home.views.</code><code class="descname">delete_home</code><span class="sig-paren">(</span><em>request</em>, <em>home</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#delete_home"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.delete_home" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница удаления дома</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+<li><p><strong>home</strong> – идентификатор дома</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон удаления дома</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.delete_room">
+<code class="descclassname">home.views.</code><code class="descname">delete_room</code><span class="sig-paren">(</span><em>request</em>, <em>home</em>, <em>room</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#delete_room"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.delete_room" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница удаления комнаты</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+<li><p><strong>home</strong> – идентификатор дома</p></li>
+<li><p><strong>room</strong> – идентификатор комнаты</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон удаления комнаты</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.edit_home">
+<code class="descclassname">home.views.</code><code class="descname">edit_home</code><span class="sig-paren">(</span><em>request</em>, <em>home</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#edit_home"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.edit_home" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница редактирования дома</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+<li><p><strong>home</strong> – идентификатор дома</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон редактирования дома</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.edit_houses">
+<code class="descclassname">home.views.</code><code class="descname">edit_houses</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#edit_houses"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.edit_houses" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница редактирования домов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон редактирования домов</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.edit_room">
+<code class="descclassname">home.views.</code><code class="descname">edit_room</code><span class="sig-paren">(</span><em>request</em>, <em>home</em>, <em>room</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#edit_room"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.edit_room" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница редактирования комнаты</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+<li><p><strong>home</strong> – идентификатор дома</p></li>
+<li><p><strong>room</strong> – идентификатор комнаты</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон удаления комнаты</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.generate_codes">
+<code class="descclassname">home.views.</code><code class="descname">generate_codes</code><span class="sig-paren">(</span><em>room</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#generate_codes"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.generate_codes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Создание кодов доступа для датчиков, подключённых</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>room</strong> – комната, в которой будут находится датчики</p></li>
+<li><p><strong>key</strong> – ключ активации</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.get_base_context">
+<code class="descclassname">home.views.</code><code class="descname">get_base_context</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#get_base_context"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.get_base_context" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция заполняющая словарь context базовым контекстом</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>словарь с предустановленными значениями</p>
+</dd>
+<dt class="field-even">Тип результата</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.handler403">
+<code class="descclassname">home.views.</code><code class="descname">handler403</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#handler403"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.handler403" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница ошибки 403</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpResponse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.handler404">
+<code class="descclassname">home.views.</code><code class="descname">handler404</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#handler404"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.handler404" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница ошибки 404</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpResponse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.handler500">
+<code class="descclassname">home.views.</code><code class="descname">handler500</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#handler500"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.handler500" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница ошибки 505</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpResponse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.index_page">
+<code class="descclassname">home.views.</code><code class="descname">index_page</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#index_page"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.index_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Главная страница</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpResponse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.instruction">
+<code class="descclassname">home.views.</code><code class="descname">instruction</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#instruction"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.instruction" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница инструкции</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на страницу инструкции</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.logout_page">
+<code class="descclassname">home.views.</code><code class="descname">logout_page</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#logout_page"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.logout_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Выход из профиля</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на главную страницу</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.new_license">
+<code class="descclassname">home.views.</code><code class="descname">new_license</code><span class="sig-paren">(</span><em>cmd=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#new_license"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.new_license" title="Ссылка на это определение">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>cmd</strong> – строка содержащие типы датчиков для лицензии</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.panel_page">
+<code class="descclassname">home.views.</code><code class="descname">panel_page</code><span class="sig-paren">(</span><em>request</em>, <em>panel_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#panel_page"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.panel_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница панели</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>panel_type</strong> – тема панели (авто, тёмная, светлая)</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на панель</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.products">
+<code class="descclassname">home.views.</code><code class="descname">products</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#products"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.products" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница покупки девайсов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон покупки девайсов</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.profile">
+<code class="descclassname">home.views.</code><code class="descname">profile</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#profile"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.profile" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница профиля</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на страницу профиля</p>
+</dd>
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>перенаправление на страницу 404 при ошибке</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.recover">
+<code class="descclassname">home.views.</code><code class="descname">recover</code><span class="sig-paren">(</span><em>request</em>, <em>token_1=None</em>, <em>token_2=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#recover"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.recover" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция, создающая хэш ссылки, для восстановления пароля</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_1</strong> – первый токен для доступа к странице ввода 6-значного кода</p></li>
+<li><p><strong>token_2</strong> – второй токен для доступа к странице ввода 6-значного кода</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на последущую страницу при успешном восстановлении</p>
+</dd>
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>перенаправление на эту же страницу при ошибке</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.register_page">
+<code class="descclassname">home.views.</code><code class="descname">register_page</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#register_page"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.register_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница регистрации</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – Объект с деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>Перенаправление на главную страницу</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.relay_house_off">
+<code class="descclassname">home.views.</code><code class="descname">relay_house_off</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#relay_house_off"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.relay_house_off" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница выключения всех реле в доме</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>панель с выключенными реле</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.relay_house_on">
+<code class="descclassname">home.views.</code><code class="descname">relay_house_on</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#relay_house_on"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.relay_house_on" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница включения всех реле в доме</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>панель с включенными реле</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.relay_room_off">
+<code class="descclassname">home.views.</code><code class="descname">relay_room_off</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#relay_room_off"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.relay_room_off" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница выключения всех реле в комнате</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>панель с выключенными реле</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.relay_room_on">
+<code class="descclassname">home.views.</code><code class="descname">relay_room_on</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#relay_room_on"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.relay_room_on" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница включения всех реле в комнате</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>панель с включенными реле</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.set_password">
+<code class="descclassname">home.views.</code><code class="descname">set_password</code><span class="sig-paren">(</span><em>request</em>, <em>confirm_token_1=None</em>, <em>confirm_token_2=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#set_password"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.set_password" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница восстановления пароля</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>confirm_token_1</strong> – первый токен для перехода на страницу установки нового пароля</p></li>
+<li><p><strong>confirm_token_2</strong> – второй токен для перехода на страницу установки нового пароля</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на следующую страницу</p>
+</dd>
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>перенаправление на эту же страницу при ошибке</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.set_registration">
+<code class="descclassname">home.views.</code><code class="descname">set_registration</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#set_registration"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.set_registration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Страница включения/отключения регистрации(только для администраторов)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>шаблон отключения регистрации</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.success">
+<code class="descclassname">home.views.</code><code class="descname">success</code><span class="sig-paren">(</span><em>request</em>, <em>title=''</em>, <em>text=''</em>, <em>template_name='success.html'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#success"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.success" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция перенаправляющая на главную страницу при возниковении
+ошибки или создание многновенного сообщения</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_name</strong> – путь к шаблону</p></li>
+<li><p><strong>text</strong> – текст, который будет отображаться на странице</p></li>
+<li><p><strong>title</strong> – заголовок страницы</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>объект ответа сервера с HTML-кодом внутри</p>
+</dd>
+<dt class="field-odd">Тип результата</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpResponse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.undo_recover">
+<code class="descclassname">home.views.</code><code class="descname">undo_recover</code><span class="sig-paren">(</span><em>request</em>, <em>confirm_token_1=None</em>, <em>confirm_token_2=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#undo_recover"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.undo_recover" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция отмены подтверждения пароля</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>confirm_token_1</strong> – первый токен для отмены восстановления пароля</p></li>
+<li><p><strong>confirm_token_2</strong> – второй токен для отмены восстановления пароля</p></li>
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на главную страницу</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="home.views.upload_file">
+<code class="descclassname">home.views.</code><code class="descname">upload_file</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/home/views.html#upload_file"><span class="viewcode-link">[исходный код]</span></a><a class="headerlink" href="#home.views.upload_file" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Функция по загрузке файлов</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.HttpRequest</span></code>) – объект c деталями запроса</p>
+</dd>
+<dt class="field-even">Результат</dt>
+<dd class="field-even"><p>перенаправление на панель</p>
+</dd>
+<dt class="field-odd">Результат</dt>
+<dd class="field-odd"><p>перенаправление на страницу загрузки</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Ovchinnikov Vsevolod.<br/>
+      Создано с помощью <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

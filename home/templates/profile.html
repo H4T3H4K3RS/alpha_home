@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+    {% load static %} {% load recaptcha2 %}
+    <meta charset="utf-8">
+    <title>Личный Кабинет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href="{% static 'landing/css/style.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/bootstrap.min.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/normalize.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/flexslider.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/swipebox.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/animate.min.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/slick.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/slick-theme.css' %}" />
+    <link rel='stylesheet' href="{% static 'landing/css/page_with_rewards.css' %}" />
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script type='text/javascript' src='{% static "landing/js/bootstrap.min.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/jquery.placeholder.label.min.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/jquery.maskedinput.min.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/jquery.flexslider-min.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/jquery.swipebox.min.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/custom.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/jquery.form.js" %}'></script>
+    <script type='text/javascript' src='{% static "landing/js/slick.min.js" %}'></script>{% recaptcha_init %} <script>
+        window.onload = function() {
+            var $recaptcha = document.querySelector('#g-recaptcha-response');
+            if ($recaptcha) {
+                $recaptcha.setAttribute("required", "required");
+            }
+        };
+
+    </script>
+    <style>
+        #g-recaptcha-response {
+            display: block !important;
+            position: absolute;
+            margin: -78px 0 0 0 !important;
+            width: 302px !important;
+            height: 76px !important;
+            z-index: -999999;
+            opacity: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="header" style="z-index: 1000;">
+        <nav class="navbar navbar-fixed-top" style="background: rgba(0, 0, 0, 0.76);">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" aria-expanded="false" data-toggle="collapse" data-target=".bs-collapse" aria-controls="bs-example-navbar-collapse-1 bs-reward-spacer1 bs-reward-spacer2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse no_left no_right bs-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <a href="/"><img src="{% static 'images/alpha.png' %}" height="20px" style="cursor: pointer;" alt="logo"></a>
+                        {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'support' %}">Тех. Поддержка</a></li>
+                        <li><a href="{% url 'panel' %}">Панель</a></li>
+                        <li><a href="{% url 'help' %}">Помощь</a></li>
+                        <li><a href="{% url 'profile' %}">{{ request.user }}</a></li>
+                        <li><a href="{% url 'logout' %}">Выйти</a></li>
+                        {% else %}
+                        <li><a href="/#free">Услуги</a></li>
+                        <li><a href="/#checklist">Оборудование</a></li>
+                        <li><a href="/#service">Сервисное обслуживание</a></li>
+                        <li><a href="/#footer">Контакты</a></li>
+                        <li><a href="{% url 'support' %}">Тех. Поддержка</a></li>
+                        <li><a href="{% url 'help' %}">Помощь</a></li>
+                        <li><a href="{% url 'login' %}">Вход</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(53512972, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/53512972" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139390565-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139390565-1');
+
+    </script>
+
+    <hr>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1>{{ request.user }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <!--left col-->
+
+
+                <div class="text-center">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                </div>
+                <hr /><br>
+            </div>
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Настройки</a></li>
+                </ul>
+
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <hr>
+                        <form class="form" action="{% url 'profile' %}" method="post" id="registrationForm">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    {{ form.username }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    {{ form.first_name }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    {{ form.password }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    {{ form.password2 }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    {{ form.recaptcha }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="button btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Сохранить
+                                    </button>
+                                    <button class="button" type="reset"><i class="glyphicon glyphicon-repeat"></i> Сброс
+                                    </button>
+                                </div>
+                            </div>
+                            {% if messages %}
+                            <div class="alert message" role="alert">
+                                {% for message in messages %}
+                                {{ message }}
+                                <br>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </form>
+
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
