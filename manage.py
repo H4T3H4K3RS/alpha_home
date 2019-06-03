@@ -7,7 +7,7 @@ if sys.platform == 'darwin':   # mysqlclient init on macOS
     pymysql.install_as_MySQLdb()
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alpha_home.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alpha.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -41,8 +41,8 @@ test:
   - pip install -r requirements.txt
   script:
   - coverage run --source='.' manage.py test home
-  - coverage report --omit="home/apps/*","home/validators.py","home/migrations/*","alpha_home/*","manage.py","home/test.py","home/receiver.py"
-  - coverage html --omit="home/apps/*","home/validators.py","home/migrations/*","alpha_home/*","manage.py","home/test.py","home/receiver.py"
+  - coverage report --omit="home/apps/*","home/validators.py","home/migrations/*","alpha/*","manage.py","home/test.py","home/receiver.py"
+  - coverage html --omit="home/apps/*","home/validators.py","home/migrations/*","alpha/*","manage.py","home/test.py","home/receiver.py"
   - mkdir public
   - mv htmlcov public/coverage
   artifacts:
