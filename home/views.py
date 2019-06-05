@@ -2,7 +2,6 @@
   View-функции
 """
 
-
 import datetime
 import random
 from hashlib import sha256, md5
@@ -625,6 +624,10 @@ def set_password(request, confirm_token_1=None, confirm_token_2=None):
             context["token_2"] = confirm_token_2
             context["form"] = NewPasswordForm()
             return render(request, "recover_password/set_password.html", context)
+
+
+def control_panel(requests):
+    return render(requests, 'control_panel.html', )
 
 
 def recover(request, token_1=None, token_2=None):
@@ -1338,4 +1341,3 @@ def relay_house_off(request):
             relay.switched = False
             relay.save()
     return redirect('/panel/')
-

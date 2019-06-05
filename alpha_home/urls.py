@@ -54,6 +54,7 @@ urlpatterns = [
     # Dashboard
     path('panel/<str:panel_type>/', views.panel_page, name="panel_type"),
     path('panel/', views.panel_page, name="panel"),
+    path('control_panel', views.control_panel, name="panel"),
     path('upload_picture/', views.upload_file, name="upload_picture"),
     path('change/house/<int:house_id>', views.change_house, name="change_house"),
     path('change/room/<int:room_id>', views.change_room, name="change_room"),
