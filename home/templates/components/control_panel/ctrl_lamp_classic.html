@@ -11,7 +11,7 @@
                     <div style="display: flex; flex-direction: column;">
                         <div class="params"><span style="font-weight: bold;">{{ room.name }}</span>: {{ lamp.name }}</div>
                     </div>
-                    <div style="cursor: pointer;"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px" height="45px">
+                    <div style="cursor: pointer;"><a onclick="modal_input_1_fields_setup('Изменение комнаты {{ room.name }}', 'edit_room({{ room.id }})', '{{ room.name }}', 'Название', 'Сохранить', 'Отмена',)" class="modal_input1_open"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px" height="45px"></a>
                     </div>
                 </div>
                 {% comment %}Next level{% endcomment %}

@@ -5,5 +5,5 @@ function show_notification(text="LOREM", status="error", type="bottom-right") {
     notification.className = type;
     notification.className += " notify  do-show";
     notification.innerHTML = text;
-    setTimeout(function () { notification.classList.remove("do-show"); }, 3500);
+    setTimeout(function () { notification.classList.remove("do-show"); }, 5000);
 }

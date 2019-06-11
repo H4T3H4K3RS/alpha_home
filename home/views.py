@@ -3,6 +3,7 @@
 """
 
 import datetime
+import json
 import random
 from hashlib import sha256, md5
 import pytz
@@ -1028,12 +1029,20 @@ def edit_room(request, room):
             if request.is_ajax():
                 if request.method == "POST":
                     print(request.body)
+                    data = json.loads(request.body)
+                    try:
+                        room_object.name = data['name']
+                        room_object.save()
+                        print(data)
+                        return HttpResponse("ok")
+                    except Exception:
+                        pass
                 else:
                     return HttpResponse(status=404)
         else:
-            return handler403(request)
-    except Home.DoesNotExist:
-        return handler404(request)
+            return HttpResponse(status=403)
+    except Room.DoesNotExist:
+        return HttpResponse(status=404)
 
 
 @login_required(login_url="/login/")
