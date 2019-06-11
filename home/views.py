@@ -160,30 +160,34 @@ def add_data(request, context=None):
     if context is None:
         context = {}
     context["api"] = {}
-    indicators = get_weather()
-    if indicators != {}:
-        context["api"]["temperature"] = indicators[0]
-        context["api"]["condition"] = indicators[1]
-        context["api"]["wind_speed"] = indicators[2]
-        context["api"]["wind_dir"] = indicators[3]
-        context["api"]["humidity"] = indicators[4]
-        context["api"]["pressure"] = indicators[6]
-        context["api"]["precipitation"] = indicators[7]
-        context["api"]["precipitation_mm"] = indicators[8]
-        context["api"]["feels_like"] = indicators[9]
-    else:
-        context["api"]["temperature"] = "NaN"
-        context["api"]["condition"] = "NaN"
-        context["api"]["wind_speed"] = "NaN"
-        context["api"]["wind_dir"] = "NaN"
-        context["api"]["humidity"] = "NaN"
-        context["api"]["pressure"] = "NaN"
-        context["api"]["precipitation"] = "NaN"
-        context["api"]["precipitation_mm"] = "NaN"
-        context["api"]["feels_like"] = "NaN"
+    try:
+        indicators = get_weather(city=Personalization.objects.get(user=request.user).home.city)
+        if indicators != {}:
+            context["api"]["temperature"] = indicators[0]
+            context["api"]["condition"] = indicators[1]
+            context["api"]["wind_speed"] = indicators[2]
+            context["api"]["wind_dir"] = indicators[3]
+            context["api"]["humidity"] = indicators[4]
+            context["api"]["pressure"] = indicators[6]
+            context["api"]["precipitation"] = indicators[7]
+            context["api"]["precipitation_mm"] = indicators[8]
+            context["api"]["feels_like"] = indicators[9]
+        else:
+            context["api"]["temperature"] = "NaN"
+            context["api"]["condition"] = "NaN"
+            context["api"]["wind_speed"] = "NaN"
+            context["api"]["wind_dir"] = "NaN"
+            context["api"]["humidity"] = "NaN"
+            context["api"]["pressure"] = "NaN"
+            context["api"]["precipitation"] = "NaN"
+            context["api"]["precipitation_mm"] = "NaN"
+            context["api"]["feels_like"] = "NaN"
+    except Personalization.DoesNotExist:
+        pass
     now = datetime.datetime.now()
     context["date"] = now.date
     try:
+        context['current_house'] = Personalization.objects.get(user=request.user).home
         context["houses"] = Home.objects.filter(user=request.user)
         context["rooms"] = []
         context["lamps"] = []
