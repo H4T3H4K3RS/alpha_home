@@ -11,13 +11,27 @@ function send_room_light(on, lamp_id) {
     let statuson = document.getElementById("statuson_"+lamp_id);
     if(parseInt(on) === 1){
         $.get("/lamp/room/"+ lamp_id + "/on/");
-        status.innerText = "ВКЛ";
+        status.innerText = "ВКЛЮЧЕНО";
         statuson.style.display = "none";
         statusoff.style.display = "inline";
     }
+    else if(parseInt(on) === 2) {
+        if (status.innerText === "ВКЛЮЧЕНО") {
+            $.get("/lamp/room/" + lamp_id + "/off/");
+            status.innerText = "ВЫКЛЮЧЕНО";
+            statuson.style.display = "inline";
+            statusoff.style.display = "none";
+        }
+        else {
+            $.get("/lamp/room/"+ lamp_id + "/on/");
+            status.innerText = "ВКЛЮЧЕНО";
+            statuson.style.display = "none";
+            statusoff.style.display = "inline";
+        }
+    }
     else{
         $.get("/lamp/room/" + lamp_id + "/off/");
-        status.innerText = "ВЫКЛ";
+        status.innerText = "ВЫКЛЮЧЕНО";
         statuson.style.display = "inline";
         statusoff.style.display = "none";
     }

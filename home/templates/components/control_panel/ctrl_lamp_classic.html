@@ -16,7 +16,7 @@
                 </div>
                 {% comment %}Next level{% endcomment %}
                 <div style="display: flex; justify-content: space-around; font-weight: 100; color: rgba(214,214,202,0.93);">
-                    <div style="color: rgba(150,150,141,0.82);">Статус: <a id="status_{{ lamp.id }}" style="color: #FFFFF0; cursor: not-allowed;">{% if lamp.switched %}ВКЛ{% else %}ВЫКЛ{% endif %}</a></div>
+                    <div style="font-weight: bold; color: rgba(150,150,141,0.82);"><a onclick="send_room_light(2, {{ lamp.id }})" id="status_{{ lamp.id }}" style="color: #FFFFF0;">{% if lamp.switched %}ВКЛЮЧЕНО{% else %}ВЫКЛЮЧЕНО{% endif %}</a></div>
                     <div style="cursor: pointer;"><a style="color: rgba(180,255,166,0.73); display: {% if not lamp.switched %}inline{% else %}none{% endif %};" id="statuson_{{ lamp.id }}" onclick="send_room_light(1, {{ lamp.id }})">Включить</a><a style="color: rgba(255,154,149,0.73); display: {% if lamp.switched %}inline{% else %}none{% endif %};" id="statusoff_{{ lamp.id }}" onclick="send_room_light(0, {{ lamp.id }})">Выключить</a></div>
                 </div>
             </div>
