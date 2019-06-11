@@ -915,7 +915,7 @@ if (typeof (window.$jqTheme || window.jQuery) === 'undefined') {
 }(window.$jqTheme || window.jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.7
+ * Bootstrap: modal_confirm.js v3.3.7
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.

@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.shortcuts import render
 from django.urls import path, include
-from home import views, receiver
+from home import views
 from django.views.generic import TemplateView
 
 handler404 = 'home.views.handler404'
@@ -54,26 +53,18 @@ urlpatterns = [
     # Dashboard
     path('panel/<str:panel_type>/', views.panel_page, name="panel_type"),
     path('panel/', views.panel_page, name="panel"),
-    path('control_panel', views.control_panel, name="panel"),
+    path('control_panel/', views.control_panel, name="panel"),
     path('upload_picture/', views.upload_file, name="upload_picture"),
     path('change/house/<int:house_id>', views.change_house, name="change_house"),
-    path('change/room/<int:room_id>', views.change_room, name="change_room"),
     path('add/<int:home>/room/', views.add_room, name="add_room"),
     path('edit/', views.edit_houses, name="edit"),
     path('edit/<int:home>/', views.edit_home, name="edit_home"),
     path('edit/<int:home>/delete/', views.delete_home, name="delete_home"),
-    path('edit/<int:home>/room/<int:room>/', views.edit_room, name="edit_room"),
-    path('edit/<int:home>/room/<int:room>/delete/', views.delete_room, name="delete_room"),
-    path('relay/off/', views.relay_room_off, name="relay_room_off"),
-    path('relay/on/', views.relay_room_on, name="relay_room_on"),
-    path('relay/house/off/', views.relay_house_off, name="relay_house_off"),
-    path('relay/house/on/', views.relay_house_on, name="relay_house_on"),
+    path('edit/room/<int:room>/', views.edit_room, name="edit_room"),
+    path('edit/room/<int:room>/delete/', views.delete_room, name="delete_room"),
+    path('lamp/room/<int:lamp>/<str:on>/', views.lamp_room, name="lamp_room"),
+    path('lamp/house/<str:on>/', views.lamp_house, name="lamp_house"),
     # END of Dashboard
-    # Service for Arduino IoT:
-    path('services/condition', receiver.condition, name="condition"),
-    path('services/relay', receiver.relay, name="relay"),
-    path('services/door', receiver.door, name="door"),
-    # END of Arduino IOT:
     # Onesignal SDK
     path('manifest.json',
          TemplateView.as_view(template_name='onesignal/manifest.json', content_type='application/json')),

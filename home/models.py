@@ -95,6 +95,7 @@ class Condition(models.Model):
     :param co2: количество co2
     :param humidity: влажность воздуха
     """
+    name = models.CharField(max_length=100, default="Датчики")
     code = models.ForeignKey(
         to=CodeCondition, on_delete=models.CASCADE, blank=True, null=False)
     room = models.ForeignKey(
@@ -125,6 +126,7 @@ class Door(models.Model):
     :param room: комната нахождения датчика
     :param opened: открыта ли дверь
     """
+    name = models.CharField(max_length=100, default="Дверь")
     code = models.ForeignKey(
         to=CodeDoor, on_delete=models.CASCADE, blank=True, null=False)
     room = models.ForeignKey(
@@ -132,7 +134,35 @@ class Door(models.Model):
     opened = models.BooleanField(default=False)  # 0 - closed; 1 - opened
 
 
-class CodeRelay(models.Model):
+class CodeWindow(models.Model):
+    """
+    Код для перезаписи значений сенсора окна
+
+    :param room: комната
+    :param code: код для перезаписи значений датчика
+    """
+    room = models.ForeignKey(
+        to=Room, on_delete=models.CASCADE, blank=True, null=False)
+    code = models.CharField(default="", max_length=65)
+
+
+class Window(models.Model):
+    """
+    Основная модель для сенсора окна
+
+    :param code: код доступа к данному датчику
+    :param room: комната нахождения датчика
+    :param opened: открыта ли дверь
+    """
+    name = models.CharField(max_length=100, default="Окно")
+    code = models.ForeignKey(
+        to=CodeDoor, on_delete=models.CASCADE, blank=True, null=False)
+    room = models.ForeignKey(
+        to=Room, on_delete=models.CASCADE, blank=True, null=False)
+    opened = models.BooleanField(default=False)  # 0 - closed; 1 - opened
+
+
+class CodeLamp(models.Model):
     """
     Код для перезаписи значений сенсора лампы
 
@@ -144,7 +174,7 @@ class CodeRelay(models.Model):
     code = models.CharField(default="", max_length=65)
 
 
-class Relay(models.Model):
+class Lamp(models.Model):
     """
     Основная модель для сенсора лампы
 
@@ -153,14 +183,15 @@ class Relay(models.Model):
     :param switched: включение лампочки
     :param color: цвет лампы
     """
+    name = models.CharField(max_length=100, default="Лампа")
     code = models.ForeignKey(
-        to=CodeRelay, on_delete=models.CASCADE, blank=True, null=False)
+        to=CodeLamp, on_delete=models.CASCADE, blank=True, null=False)
     room = models.ForeignKey(
         to=Room, on_delete=models.CASCADE, blank=True, null=False)
     switched = models.BooleanField(default=False)  # 0 - off; 1 - on;
 
 
-class CodeDisplay(models.Model):
+class CodeSocket(models.Model):
     """
     Код для перезаписи значений сенсора лампы
 
@@ -172,21 +203,21 @@ class CodeDisplay(models.Model):
     code = models.CharField(default="", max_length=65)
 
 
-class Display(models.Model):
+class Socket(models.Model):
     """
     Основная модель для сенсора лампы
 
     :param code: код доступа к данному датчику
     :param room: комната
-    :param number: название датчика
     :param switched: включение лампочки
+    :param color: цвет лампы
     """
+    name = models.CharField(max_length=100, default="Розетка")
     code = models.ForeignKey(
-        to=CodeDisplay, on_delete=models.CASCADE, blank=True, null=False)
+        to=CodeSocket, on_delete=models.CASCADE, blank=True, null=False)
     room = models.ForeignKey(
         to=Room, on_delete=models.CASCADE, blank=True, null=False)
-    data1 = models.CharField(max_length=17)
-    data2 = models.CharField(max_length=17)
+    switched = models.BooleanField(default=False)  # 0 - off; 1 - on;
 
 
 class Picture(models.Model):
@@ -221,7 +252,6 @@ class Personalization(models.Model):
     :param user: ForeignKey к модели :class:`django.contrib.auth.models.User`
     :param room: комната, которая открывается в панели
     """
-    room = models.ForeignKey(
-        to=Room, on_delete=models.CASCADE, blank=True, null=True)
+    home = models.ForeignKey(to=Home, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     theme = models.IntegerField(default=1)  # 0 - light; 1 - dark; 2-auto
