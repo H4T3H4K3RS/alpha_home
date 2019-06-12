@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+
+import home.ajax_views
 from home import views
 from django.views.generic import TemplateView
 
@@ -55,15 +57,14 @@ urlpatterns = [
     path('panel/', views.panel_page, name="panel"),
     path('control_panel/', views.control_panel, name="panel"),
     path('upload_picture/', views.upload_file, name="upload_picture"),
-    path('change/house/<int:house_id>', views.change_house, name="change_house"),
-    path('add/<int:home>/room/', views.add_room, name="add_room"),
-    path('edit/', views.edit_houses, name="edit"),
-    path('edit/<int:home>/', views.edit_home, name="edit_home"),
-    path('edit/<int:home>/delete/', views.delete_home, name="delete_home"),
-    path('edit/room/<int:room>/', views.edit_room, name="edit_room"),
-    path('edit/room/<int:room>/delete/', views.delete_room, name="delete_room"),
-    path('lamp/room/<int:lamp>/<str:on>/', views.lamp_room, name="lamp_room"),
-    path('lamp/house/<str:on>/', views.lamp_house, name="lamp_house"),
+    path('change/house/<int:house_id>', home.ajax_views.change_house, name="change_house"),
+    path('add/<int:home>/room/', home.ajax_views.add_room, name="add_room"),
+    path('edit/<int:home>/', home.ajax_views.edit_home, name="edit_home"),
+    path('edit/<int:home>/delete/', home.ajax_views.delete_home, name="delete_home"),
+    path('edit/room/<int:room>/', home.ajax_views.edit_room, name="edit_room"),
+    path('edit/room/<int:room>/delete/', home.ajax_views.delete_room, name="delete_room"),
+    path('lamp/room/<int:lamp>/<str:on>/', home.ajax_views.lamp_room, name="lamp_room"),
+    path('lamp/house/<str:on>/', home.ajax_views.lamp_house, name="lamp_house"),
     # END of Dashboard
     # Onesignal SDK
     path('manifest.json',

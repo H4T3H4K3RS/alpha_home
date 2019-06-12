@@ -3,14 +3,13 @@
 """
 
 import datetime
-import json
 import random
 from hashlib import sha256, md5
 import pytz
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -22,11 +21,8 @@ from home.forms import (
     RecoverForm,
     RecoverCodeForm,
     NewPasswordForm,
-    HomeForm,
     HiddenForm,
-    EditRoomForm,
     LicenseForm,
-    RoomForm,
     ProfileForm)
 from home.apps.weather import get_weather
 from home.apps.send_mail import send_mail
@@ -934,175 +930,6 @@ def profile(request):
             return handler404(request)
 
 
-@login_required(login_url="/login/")
-def delete_room(request, room):
-    """
-    Страница удаления комнаты
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :param home: идентификатор дома
-    :param room: идентификатор комнаты
-    :return: шаблон удаления комнаты
-    """
-    try:
-        room_obj = Room.objects.get(id=room)
-        if request.user == room_obj.house.user:
-            room_obj.delete()
-        return HttpResponse('')
-    except Home.DoesNotExist or Room.DoesNotExist:
-        return HttpResponse('')
-
-
-@login_required(login_url="/login/")
-def delete_home(request, home):
-    """
-    Страница удаления дома
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :param home: идентификатор дома
-    :return: шаблон удаления дома
-    """
-    try:
-        house = Home.objects.get(id=home)
-        rooms = Room.objects.filter(house=house)
-        if request.user == house.user:
-            house.delete()
-            for room in rooms:
-                room.delete()
-        return HttpResponse('SUCCESS')
-    except Room.DoesNotExist or Home.DoesNotExist:
-        return HttpResponse('FAIL')
-
-
-@login_required(login_url="/login/")
-def edit_home(request, home):
-    """
-    Страница редактирования дома
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :param home: идентификатор дома
-    :return: шаблон редактирования дома
-    """
-    try:
-        house = Home.objects.get(id=home)
-        rooms = Room.objects.filter(house=house)
-        if request.user == house.user:
-            context = get_base_context()
-            context["title"] = "Редактирование дома"
-            context["home"] = house
-            context["rooms"] = rooms
-            if request.method == "POST":
-                form = HomeForm(request.POST)
-                if form.is_valid():
-                    house.name = form.data["name"]
-                    house.city = form.data["city"]
-                    house.save()
-                    return redirect("/edit/")
-                else:
-                    context["form_room"] = RoomForm()
-                    context["form"] = HomeForm()
-            else:
-                context["form_room"] = RoomForm()
-                context["form"] = HomeForm()
-            return render(request, "houses/edit.html", context)
-        else:
-            return handler403(request)
-    except Home.DoesNotExist:
-        return handler404(request)
-
-
-@login_required(login_url="/login/")
-def edit_room(request, room):
-    """
-    Страница редактирования комнаты
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :param home: идентификатор дома
-    :param room: идентификатор комнаты
-    :return: шаблон удаления комнаты
-    """
-    try:
-        room_object = Room.objects.get(id=room)
-        if request.user == room_object.house.user:
-            context = get_base_context()
-            context["room"] = room_object
-            if request.is_ajax():
-                if request.method == "POST":
-                    print(request.body)
-                    data = json.loads(request.body)
-                    try:
-                        room_object.name = data['name']
-                        room_object.save()
-                        print(data)
-                        return HttpResponse("ok")
-                    except Exception:
-                        pass
-                else:
-                    return HttpResponse(status=404)
-        else:
-            return HttpResponse(status=403)
-    except Room.DoesNotExist:
-        return HttpResponse(status=404)
-
-
-@login_required(login_url="/login/")
-def edit_houses(request):
-    """
-    Страница редактирования домов
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: шаблон редактирования домов
-    """
-    try:
-        context = get_base_context()
-        context["title"] = "Редактирование Домов/Квартир"
-        context["houses"] = Home.objects.filter(user=request.user)
-        if request.method == "POST":
-            form = HomeForm(request.POST)
-            if form.is_valid():
-                home = Home(
-                    name=form.data["Name"], city=form.data["City"], user=request.user
-                )
-                home.save()
-                return redirect("/edit/")
-            else:
-                context["form"] = HomeForm()
-        else:
-            context["form"] = HomeForm()
-        return render(request, "houses/houses.html", context)
-    except Home.DoesNotExist:
-        return handler404(request)
-
-
-@login_required(login_url="/login/")
-def add_room(request, home):
-    """
-    Страница добавления комнаты
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :param home: идентификатор дома
-    :return: шаблон редактирования комнаты
-    """
-    try:
-        house = Home.objects.get(id=home)
-        if request.method == "POST" and house.user == request.user:
-            form = RoomForm(request.POST)
-            if form.is_valid() and check_key(form.data["key"]):
-                room = Room(name=form.data["name"], house=house)
-                room.save()
-                generate_codes(room=room, key=form.data["key"])
-                return redirect("/edit/" + str(home))
-        return redirect("/edit/" + str(home))
-    except Home.DoesNotExist:
-        return handler404(request)
-
-
 def products(request):
     """
     Страница покупки девайсов
@@ -1115,33 +942,6 @@ def products(request):
     magazine = Magazine.objects.filter()
     context["magazine"] = magazine
     return render(request, "products.html", context)
-
-
-@login_required(login_url="/login/")
-def change_house(request, house_id):
-    """
-    Страница редактирования домов
-
-    :param house_id: идентификатор дома, на который требуется переключиться
-    :type house_id: :class:`int`
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: перенаправление на панель
-    """
-    try:
-        home = Home.objects.get(id=house_id)
-        if home.user == request.user:
-            try:
-                personalization = Personalization.objects.get(user=request.user)
-                personalization.home = home
-                personalization.save()
-                return redirect("/control_panel/")
-            except Personalization.DoesNotExist:
-                return handler404(request)
-        else:
-            return handler403(request)
-    except Home.DoesNotExist:
-        return handler404(request)
 
 
 @staff_member_required
@@ -1201,38 +1001,3 @@ def set_registration(request):
         return render(request, "set_registration.html", context)
 
 
-@login_required(login_url='/login/')
-def lamp_room(request, lamp, on):
-    """
-    Страница включения всех реле в комнате
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: панель с включенными реле
-    """
-    try:
-        lamp = Lamp.objects.get(id=lamp)
-        if request.user == lamp.room.house.user:
-            lamp.switched = True if on == "on" else False
-            lamp.save()
-        return HttpResponse('')
-    except Lamp.DoesNotExist:
-        return HttpResponse('')
-
-
-@login_required(login_url='/login/')
-def lamp_house(request, on):
-    """
-    Страница включения всех реле в доме
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: панель с включенными реле
-    """
-    current = Personalization.objects.get(user=request.user).home
-    for room in Room.objects.filter(house=current):
-        lamps = Lamp.objects.filter(room=room)
-        for lamp in lamps:
-            lamp.switched = True if on == "on" else False
-            lamp.save()
-    return HttpResponse('')

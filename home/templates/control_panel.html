@@ -33,7 +33,9 @@
     <script src="{% static 'js/modal_input1.js' %}"></script>
     <script src="{% static 'js/modal_input2.js' %}"></script>
     <!-- END of CD POPUP MODAL -->
-
+    <!-- SCROLLBAR -->
+    <link rel="stylesheet" href="{% static 'css/scrollbar.css' %}">
+    <!-- END of SCROLLBAR -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <!-- END of Font Awesome -->
@@ -54,7 +56,7 @@
     {% include 'components/control_panel/modals/input1.html' %}
     {% include 'components/control_panel/modals/confirm.html' %}
     <div class="row mainer">
-        <div class="col blocks" style="background-image: url('{% static 'images/dark_wood.png' %}');">
+        <div class="col blocks scrollbar" style="background-image: url('{% static 'images/dark_wood.png' %}');">
 
             {% include 'components/control_panel/menu.html' %}
 
