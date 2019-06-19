@@ -1,18 +1,19 @@
 {% load static %}
 <div class="row" style="position: relative;">
+    <div class="col" style="position: relative; display: flex; flex-direction: row-reverse; left: -23%;">
+        <img id="menu_open" onclick="show_menu()" src="{% static 'images/control_panel/menu.svg' %}" title="Открыть Меню" alt="menu" style="position: relative; top: 30px; right: 30px; width: 32px; height: 32px;">
+        <img id="menu_close" onclick="close_menu()" src="{% static 'images/cross_white.png' %}" title="Закрыть Меню" alt="menu">
+    </div>
+    <div class="col-5" id="city-header">
+        <img src="{% static 'images/control_panel/building.svg' %}" alt="building" width="36px"
+             height="36px" style="position: relative; top: 4px;">
+        &nbsp;
+        <span title="На улице">{{ current_house.city }}: {{ current_house.name }}&nbsp;&nbsp;&nbsp;{{ api.temperature }}°C</span>
+    </div>
     <div class="col" style="display: flex; margin: 20px; position: relative; top: 6px;">
         <img src="{% static 'images/control_panel/clock-circular-outline.svg' %}" alt="clock" width="32px"
              height="32px">
         &nbsp;&nbsp;
         <div id="timedisplay" style="bottom: 6px; position: relative;">Err:5xx</div>
     </div>
-    <div class="col-5" style="padding: 21px; position: relative; top: 1px; color: #acac9f; display: flex;">
-        <img src="{% static 'images/control_panel/building.svg' %}" alt="building" width="36px"
-             height="36px" style="position: relative; top: 4px;">
-        &nbsp;
-        <span title="На улице">{{ current_house.city }}: {{ current_house.name }}&nbsp;&nbsp;&nbsp;{{ api.temperature }}°C</span>
-    </div>
-    <div class="col" style="position: relative; display: flex; flex-direction: row-reverse;"><img
-            src="{% static 'images/control_panel/menu.svg' %}" width="32px" height="32px" alt="menu"
-            style="position: relative; top: 30px; right: 30px;"></div>
 </div>

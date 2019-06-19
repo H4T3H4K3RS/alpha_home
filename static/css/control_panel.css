@@ -42,6 +42,7 @@ h4 {
     border-radius: 6%;
     display: flex;
     justify-content: center;
+    transition: 0.7s;
     flex-direction: column;
     height: 14%;
 }
@@ -49,7 +50,7 @@ h4 {
 .buttons_menu:hover {
     background-color: rgb(19, 17, 19);
     color: gray;
-    transition: 0.5s;
+    transition: 0.7s;
 }
 
 .buttons_menu img {
@@ -86,4 +87,36 @@ h4 {
 .params {
     text-align: center;
     font-size: 22px;
+}
+#menu{
+    z-index: 2;
+    position: absolute;
+    float: right;
+    width: 10%;
+}
+@media (max-width: 768px){
+    #menu {
+        width: 50%;
+    }
+    #timedisplay{
+        display: none;
+    }
+    #city-header{
+        display: none;
+    }
+}
+#menu_close{
+    position: relative;
+    top: 30px;
+    right: 30px;
+    display: none;
+    width: 32px;
+    height: 32px;
+}
+#city-header{
+    padding: 21px;
+    position: relative;
+    top: 1px;
+    color: #acac9f;
+    display: flex;
 }

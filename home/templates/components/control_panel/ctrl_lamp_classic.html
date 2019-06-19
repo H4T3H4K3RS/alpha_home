@@ -3,15 +3,15 @@
 {% for room in rooms %}
     {% for lamp in lamps %}
         {% if lamp.room.id == room.id %}
-            <div class="components">
+            <div class="components" style="padding-top: 28px; padding-bottom: 112px;">
                 <div style="display: flex; justify-content: space-between;">
-                    <div><img src="{% static 'images/control_panel/lamp2.svg' %}" alt="clock" width="60px"
+                    <div onclick="send_room_light(2, {{ lamp.id }})"><img src="{% static 'images/control_panel/lamp2.svg' %}" alt="clock" width="60px"
                               height="60px">
                     </div>
                     <div style="display: flex; flex-direction: column;">
                         <div class="params"><span style="font-weight: bold;">{{ room.name }}</span>: {{ lamp.name }}</div>
                     </div>
-                    <div style="cursor: pointer;"><a onclick="modal_input_1_fields_setup('Изменение комнаты {{ room.name }}', 'edit_room({{ room.id }})', '{{ room.name }}', 'Название', 'Сохранить', 'Отмена',)" class="modal_input1_open"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px" height="45px"></a>
+                    <div style="cursor: pointer;"><a onclick="modal_input_2_fields_setup('Добавление комнаты', 'add_room({{ room.house.id }})', '', 'Название', '', 'Ключ Активаци')" class="modal_input2_open"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px" height="45px"></a>
                     </div>
                 </div>
                 {% comment %}Next level{% endcomment %}
