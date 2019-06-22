@@ -6,6 +6,7 @@ html, body, header, footer {
     font-size: 30px;
     color: #FFFFF0;
     overflow: hidden;
+    user-select: none;
 }
 
 main, .mainer {
@@ -85,5 +86,5 @@ h4 {
 
 .params {
     text-align: center;
-    font-size: 22px;
+    font-size: 18px;
 }

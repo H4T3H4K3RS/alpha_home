@@ -1,48 +1,32 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{% static 'images/control-panel.png' %}">
-    <title>Панель</title>
-    <link rel="stylesheet" href="{% static 'css/control_panel.css' %}">
-    <script src="{% static 'js/time.js' %}"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Noto+Sans+TC:300|Open+Sans+Condensed:300&display=swap"
-          rel="stylesheet">
-    <link href="{% static 'mdb-pro/css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="{% static 'mdb-pro/css/mdb.min.css' %}" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .bob {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .comp {
+            padding: 10px;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
-<header>
-    {% include 'components/control_panel/header.html' %}
-</header>
-
-
-<main>
-    <div class="row mainer">
-        <div class="col blocks" style="background-image: url('{% static 'images/dark_wood.png' %}');">
-
-            {% include 'components/control_panel/menu.html' %}
-
-        </div>
-        <div class="col-10 blocks" style="background-color: rgb(12, 12, 12); display: flex; flex-direction: column;">
-
-            {% include 'components/control_panel/ctrl_lamp_classic.html' %}
-
+    <div class="bob">
+        <div class="comp">pups</div>
+        <div style="display: flex; justify-content: space-around;">
+            <div class="comp">wcwecw</div>
+            <div class="comp">wecwec</div>
+            <div class="comp">wscdewscde</div>
+            <div class="comp">wsdcewed</div>
         </div>
     </div>
-</main>
-
-
-<footer style="display: flex; justify-content: space-between;">
-    <div>&nbsp; AlphaHome 2019</div>
-    <div>by U.Murat and O.Vsevolod &nbsp;</div>
-</footer>
 </body>
 </html>
