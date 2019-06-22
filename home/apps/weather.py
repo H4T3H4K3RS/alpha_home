@@ -2,14 +2,18 @@ import requests
 import datetime
 
 
-token = "5e028467-0619-4aec-bfb9-9df6591bd63a"
+token_weather = "5e028467-0619-4aec-bfb9-9df6591bd63a"
+token_geocode = "bf20e286-0a5d-40eb-8c8d-dacfe4a1f386"
 
 
-def get_weather(lat=55.45, lon=37.36, days=7, hours=False):  # По-умолчанию Москва на 7 дней без прогноза по часам
+def get_weather(days=7, hours=False, city="Ликино-Дулёво"):  # По-умолчанию Москва на 7 дней без прогноза по часам
     hours = "true" if hours else "false"
     d = datetime.datetime.today()
+    url = "https://geocode-maps.yandex.ru/1.x/?format=json&apikey={}&geocode={}".format(token_geocode, city)
+    geodata = requests.get(url).json()
+    lat, lon = map(float, geodata['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'].split())
     url = "https://api.weather.yandex.ru/v1/forecast?lat={}&lon={}&limit={}&hours={}".format(lat, lon, days, hours)
-    headers = {"X-Yandex-API-Key": token}
+    headers = {"X-Yandex-API-Key": token_weather}
     indicators = [0]*10
     try:
         weather = requests.get(url=url, headers=headers).json()

@@ -29,8 +29,9 @@
 </head>
 <body>
 <button onclick="add_lamp()" id="lamp">Добавить Лампу</button>
-<button onclick="add_display()" id="display">Добавить Дисплей</button>
+<button onclick="add_window()" id="window">Добавить Окно</button>
 <button onclick="add_door()" id="door">Добавить Дверь</button>
+<button onclick="add_socket()" id="socket">Добавить Розетку</button>
 <button onclick="add_condition()" id="condition">Добавить Датчик Воздуха</button>
 <button onclick="del()" id="clear">Очистить форму</button>
 <form action="{% url 'create_license' %}" method="post">
@@ -49,8 +50,8 @@
         let form = document.getElementById("cmd");
         form.value += '1'
     }
-    function add_display() {
-        let display = document.getElementById("display");
+    function add_window() {
+        let display = document.getElementById("window");
         display.style.visibility = "hidden";
         let form = document.getElementById("cmd");
         form.value += '2'
@@ -67,15 +68,23 @@
         let form = document.getElementById("cmd");
         form.value += '4'
     }
+    function add_socket() {
+        let condition = document.getElementById("socket");
+        condition.style.visibility = "hidden";
+        let form = document.getElementById("cmd");
+        form.value += '5'
+    }
     function del() {
         let lamp = document.getElementById("lamp");
         let condition = document.getElementById("condition");
-        let display = document.getElementById("display");
+        let windows = document.getElementById("window");
         let door = document.getElementById("door");
+        let socket = document.getElementById("socket");
         condition.style.visibility = "visible";
         lamp.style.visibility = "visible";
         door.style.visibility = "visible";
-        display.style.visibility = "visible";
+        windows.style.visibility = "visible";
+        socket.style.visibility = "visible";
         let form = document.getElementById("cmd");
         form.value = "";
     }

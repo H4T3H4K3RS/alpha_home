@@ -1,4 +1,5 @@
 {% load static %}
+<<<<<<< HEAD
 <div class="components" style=" min-height: 125px;">
     <div style="display: flex; justify-content: space-between;">
         <div><img src="{% static 'images/control_panel/lamp2.svg' %}" alt="clock" width="60px"
@@ -17,3 +18,29 @@
         <div style="cursor: pointer;">|&nbsp;<a style="color: rgba(180,255,166,0.73)">ON</a>&nbsp;|&nbsp;<a style="color: rgba(255,154,149,0.73)">OFF</a>&nbsp;|</div>
     </div>
 </div>
+=======
+
+{% for room in rooms %}
+    {% for lamp in lamps %}
+        {% if lamp.room.id == room.id %}
+            <div class="components">
+                <div style="display: flex; justify-content: space-between;">
+                    <div><img src="{% static 'images/control_panel/lamp2.svg' %}" alt="clock" width="60px"
+                              height="60px">
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="params"><span style="font-weight: bold;">{{ room.name }}</span>: {{ lamp.name }}</div>
+                    </div>
+                    <div style="cursor: pointer;"><a onclick="modal_input_1_fields_setup('Изменение комнаты {{ room.name }}', 'edit_room({{ room.id }})', '{{ room.name }}', 'Название', 'Сохранить', 'Отмена',)" class="modal_input1_open"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px" height="45px"></a>
+                    </div>
+                </div>
+                {% comment %}Next level{% endcomment %}
+                <div style="display: flex; justify-content: space-around; font-weight: 100; color: rgba(214,214,202,0.93);">
+                    <div style="font-weight: bold; color: rgba(150,150,141,0.82);"><a onclick="send_room_light(2, {{ lamp.id }})" id="status_{{ lamp.id }}" style="color: #FFFFF0;">{% if lamp.switched %}ВКЛЮЧЕНО{% else %}ВЫКЛЮЧЕНО{% endif %}</a></div>
+                    <div style="cursor: pointer;"><a style="color: rgba(180,255,166,0.73); display: {% if not lamp.switched %}inline{% else %}none{% endif %};" id="statuson_{{ lamp.id }}" onclick="send_room_light(1, {{ lamp.id }})">Включить</a><a style="color: rgba(255,154,149,0.73); display: {% if lamp.switched %}inline{% else %}none{% endif %};" id="statusoff_{{ lamp.id }}" onclick="send_room_light(0, {{ lamp.id }})">Выключить</a></div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+>>>>>>> c3d86ce1c138b91d950c7564c924136793657f62

@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
     <title>Document</title>
     <style>
         .bob {
@@ -28,5 +29,72 @@
             <div class="comp">wsdcewed</div>
         </div>
     </div>
+=======
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Noto+Sans+TC:300|Open+Sans+Condensed:300&display=swap"
+          rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <!-- END of FONTS -->
+    <link rel="icon" href="{% static 'images/control-panel.png' %}">
+    <title>Панель</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/control_panel.css' %}">
+    <!-- END of Custom CSS -->
+    <!-- Custom JS -->
+    <script src="{% static 'css/animate.css' %}"></script>
+    <script src="{% static 'js/time.js' %}"></script>
+    <script src="{% static 'js/ajax/panel.js' %}"></script>
+    <script src="{% static 'js/ajax/cookie.js' %}"></script>
+    <!-- END of Custom JS -->
+    <!-- NOTIFICATIONS -->
+    <link rel="stylesheet" href="{% static 'css/notifications.css' %}">
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <!-- END of NOTIFICATIONS -->
+    <!-- CD POPUP MODAL -->
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+    <script src="{% static 'js/modal_confirm.js' %}"></script>
+    <script src="{% static 'js/modal_input1.js' %}"></script>
+    <script src="{% static 'js/modal_input2.js' %}"></script>
+    <!-- END of CD POPUP MODAL -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <!-- END of Font Awesome -->
+    <link href="{% static 'mdb-pro/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'mdb-pro/css/mdb.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'mdb-pro/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mdb-pro/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mdb-pro/js/mdb.min.js' %}"></script>
+</head>
+<body>
+{% include 'components/control_panel/notification.html' %}
+<header>
+    {% include 'components/control_panel/header.html' %}
+</header>
+
+
+<main>
+    {% include 'components/control_panel/modals/input1.html' %}
+    {% include 'components/control_panel/modals/confirm.html' %}
+    <div class="row mainer">
+        <div class="col blocks" style="background-image: url('{% static 'images/dark_wood.png' %}');">
+
+            {% include 'components/control_panel/menu.html' %}
+
+        </div>
+        <div class="col-10 blocks" style="background-color: rgb(12, 12, 12); display: flex; flex-direction: column;">
+
+            {% include 'components/control_panel/ctrl_lamp_classic.html' %}
+        </div>
+    </div>
+</main>
+
+
+<footer style="display: flex; justify-content: space-between;">
+    <div>&copy; AlphaHome 2019</div>
+    <div>by O.Vsevolod and U.Murat&nbsp;</div>
+</footer>
+>>>>>>> c3d86ce1c138b91d950c7564c924136793657f62
 </body>
 </html>

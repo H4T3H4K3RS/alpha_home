@@ -3,12 +3,14 @@
 """
 
 import datetime
+import json
 import random
 from hashlib import sha256, md5
 import pytz
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -28,7 +30,6 @@ from home.forms import (
     ProfileForm)
 from home.apps.weather import get_weather
 from home.apps.send_mail import send_mail
-from home.apps.config.mail import email_contact
 from home.models import (
     PasswordRecovery,
     Personalization,
@@ -36,10 +37,12 @@ from home.models import (
     Picture,
     Condition,
     Room,
-    CodeDisplay,
-    Relay,
-    CodeRelay,
-    Display,
+    CodeSocket,
+    Socket,
+    CodeWindow,
+    Window,
+    Lamp,
+    CodeLamp,
     CodeDoor,
     Door,
     CodeCondition,
@@ -91,19 +94,20 @@ def handle_theme(request, panel_type, context):
         try:
             theme = Personalization.objects.get(user=request.user)
             theme.theme = 1
+
             theme.save()
         except Personalization.DoesNotExist:
             try:
                 house = Home.objects.filter(user=request.user)[0]
-                room = Room.objects.filter(house=house)[0]
+                print(house.id)
                 theme = Personalization()
                 theme.theme = 1
-                theme.room = room
+                theme.home = house
                 theme.user = request.user
                 theme.save()
             except IndexError:
                 return redirect("/edit/")
-        return redirect("/panel/")
+        return redirect("/control_panel/")
     elif panel_type == "auto":
         try:
             theme = Personalization.objects.get(user=request.user)
@@ -112,16 +116,15 @@ def handle_theme(request, panel_type, context):
         except Personalization.DoesNotExist:
             try:
                 house = Home.objects.filter(user=request.user)[0]
-                room = Room.objects.filter(house=house)[0]
                 theme = Personalization()
                 theme.theme = 2
-                theme.room = room
+                theme.home = house
                 theme.user = request.user
                 theme.save()
             except IndexError:
                 messages.error(request, "Не добавлена комната")
                 return redirect("/edit/")
-        return redirect("/panel/")
+        return redirect("/control_panel/")
     elif panel_type == "light":
         try:
             theme = Personalization.objects.get(user=request.user)
@@ -130,21 +133,20 @@ def handle_theme(request, panel_type, context):
         except Personalization.DoesNotExist:
             try:
                 house = Home.objects.filter(user=request.user)[0]
-                room = Room.objects.filter(house=house)[0]
                 theme = Personalization()
                 theme.theme = 0
-                theme.room = room
+                theme.home = house
                 theme.user = request.user
                 theme.save()
             except IndexError:
                 return redirect("/edit/")
-        return redirect("/panel/")
+        return redirect("/control_panel/")
     else:
         return handler404(request)
     return template_name, context
 
 
-def add_data(request, context=None, test=False):
+def add_data(request, context=None):
     """
     Добавление данных датчиков на панель
 
@@ -158,95 +160,70 @@ def add_data(request, context=None, test=False):
     if context is None:
         context = {}
     context["api"] = {}
-    indicators = get_weather()
-    if indicators != {}:
-        context["api"]["temperature"] = indicators[0]
-        context["api"]["condition"] = indicators[1]
-        context["api"]["wind_speed"] = indicators[2]
-        context["api"]["wind_dir"] = indicators[3]
-        context["api"]["humidity"] = indicators[4]
-        context["api"]["pressure"] = indicators[6]
-        context["api"]["precipitation"] = indicators[7]
-        context["api"]["precipitation_mm"] = indicators[8]
-        context["api"]["feels_like"] = indicators[9]
-    else:
-        context["api"]["temperature"] = "NaN"
-        context["api"]["condition"] = "NaN"
-        context["api"]["wind_speed"] = "NaN"
-        context["api"]["wind_dir"] = "NaN"
-        context["api"]["humidity"] = "NaN"
-        context["api"]["pressure"] = "NaN"
-        context["api"]["precipitation"] = "NaN"
-        context["api"]["precipitation_mm"] = "NaN"
-        context["api"]["feels_like"] = "NaN"
+    try:
+        indicators = get_weather(city=Personalization.objects.get(user=request.user).home.city)
+        if indicators != {}:
+            context["api"]["temperature"] = indicators[0]
+            context["api"]["condition"] = indicators[1]
+            context["api"]["wind_speed"] = indicators[2]
+            context["api"]["wind_dir"] = indicators[3]
+            context["api"]["humidity"] = indicators[4]
+            context["api"]["pressure"] = indicators[6]
+            context["api"]["precipitation"] = indicators[7]
+            context["api"]["precipitation_mm"] = indicators[8]
+            context["api"]["feels_like"] = indicators[9]
+        else:
+            context["api"]["temperature"] = "NaN"
+            context["api"]["condition"] = "NaN"
+            context["api"]["wind_speed"] = "NaN"
+            context["api"]["wind_dir"] = "NaN"
+            context["api"]["humidity"] = "NaN"
+            context["api"]["pressure"] = "NaN"
+            context["api"]["precipitation"] = "NaN"
+            context["api"]["precipitation_mm"] = "NaN"
+            context["api"]["feels_like"] = "NaN"
+    except Personalization.DoesNotExist:
+        pass
     now = datetime.datetime.now()
     context["date"] = now.date
-    if test:
-        context["condition"] = {}
-        context["condition"]["temperature"] = 22  # Celsius
-        context["condition"]["co2"] = 1000  # ppm
-        context["condition"]["humidity"] = 20  # % percents
-        context["condition"]["pressure"] = 750  # mm of Hg
-        context["lamp"] = {}
-        context["lamp"]["switched"] = 0  # 1 - on; 0 - off
-        context["display"] = {}
-        context["display"]["number"] = 0  # integer
-        context["display"]["time"] = 1  # minutes
-        context["door"] = {}
-        context["door"]["opened"] = 0  # 1 - opened; 0 - closed
-    else:
-        try:
-            default = Personalization.objects.get(user=request.user)
-            room = default.room
-            context["rooms"] = {}
-            context["rooms"]["current"] = room
-            if room is None:
-                return None
-            context["rooms"]["other"] = []
-            rooms_other = Room.objects.filter(house=room.house)
-            for room_obj in rooms_other:
-                if room_obj != room:
-                    context["rooms"]["other"].append(room_obj)
-            context["houses"] = {}
-            context["houses"]["current"] = room.house
-            context["houses"]["other"] = []
-            homes_other = Home.objects.filter(user=request.user)
-            for home in homes_other:
-                if home != room.house:
-                    context["houses"]["other"].append(home)
+    try:
+        context['current_house'] = Personalization.objects.get(user=request.user).home
+        context["houses"] = Home.objects.filter(user=request.user)
+        context["rooms"] = []
+        context["lamps"] = []
+        context["sockets"] = []
+        context["windows"] = []
+        context["doors"] = []
+        context["conditions"] = []
+        for room in Room.objects.filter(house=Personalization.objects.get(user=request.user).home):
+            context["rooms"].append(room)
             try:
-                relay = Relay.objects.get(room=room)
-                context["lamp"] = {}
-                context["lamp"]["switched"] = relay.switched  # 1 - on; 0 - off
-            except Relay.DoesNotExist:
-                context["lamp"] = 0
+                for lamp in Lamp.objects.filter(room=room):
+                    context['lamps'].append(lamp)
+            except Lamp.DoesNotExist:
+                pass
             try:
-                display = Display.objects.get(room=room)
-                context["display"] = {}
-                context["display"]["number"] = display.number  # integer
-                context["display"]["time"] = display.expires  # minutes
-            except Display.DoesNotExist:
-                context["display"] = 0
-            try:
-                condition = Condition.objects.get(room=room)
-                context["condition"] = {}
-                # Celsius
-                context["condition"]["temperature"] = int(condition.temperature)
-                context["condition"]["co2"] = int(condition.co2)  # ppm
-                # % percents
-                context["condition"]["humidity"] = int(condition.humidity)
-                context["condition"]["pressure"] = int(condition.pressure)  # mm of Hg
+                for condition in Condition.objects.filter(room=room):
+                    context['conditions'].append(condition)
             except Condition.DoesNotExist:
-                context["condition"] = 0
+                pass
             try:
-                door = Door.objects.get(room=room)
-                context["door"] = {}
-                # 1 - opened; 0 - closed
-                context["door"]["opened"] = door.opened
+                for window in Window.objects.filter(room=room):
+                    context['windows'].append(window)
+            except Window.DoesNotExist:
+                pass
+            try:
+                for door in Door.objects.filter(room=room):
+                    context['doors'].append(door)
             except Door.DoesNotExist:
-                context["door"] = 0
-        except Personalization.DoesNotExist:
-            pass
+                pass
+            try:
+                for socket in Socket.objects.filter(room=room):
+                    context['sockets'].append(socket)
+            except Socket.DoesNotExist:
+                pass
+    except Personalization.DoesNotExist:
+        pass
     return context
 
 
@@ -312,16 +289,19 @@ def generate_codes(room, key):
     """
     activation = LicenseCode.objects.get(code=key)
     if "1" in activation.code:
-        model = CodeRelay(room=room, code=key)
+        model = CodeLamp(room=room, code=key)
         model.save()
     if "2" in activation.code:
-        model = CodeDisplay(room=room, code=key)
+        model = CodeWindow(room=room, code=key)
         model.save()
     if "3" in activation.code:
         model = CodeDoor(room=room, code=key)
         model.save()
     if "4" in activation.code:
         model = CodeCondition(room=room, code=key)
+        model.save()
+    if "5" in activation.code:
+        model = CodeSocket(room=room, code=key)
         model.save()
     activation.delete()
     return
@@ -626,8 +606,15 @@ def set_password(request, confirm_token_1=None, confirm_token_2=None):
             return render(request, "recover_password/set_password.html", context)
 
 
-def control_panel(requests):
-    return render(requests, 'control_panel.html', )
+def control_panel(request):
+    context = {}
+    if type(handle_theme(request, 'dark', context)) is not HttpResponseRedirect:
+        template_name, context = handle_theme(request, 'dark', context)
+    template_name = "control_panel.html"
+    context = add_data(request, context)
+    if context is None:
+        return redirect("/edit/")
+    return render(request, template_name, context)
 
 
 def recover(request, token_1=None, token_2=None):
@@ -948,7 +935,7 @@ def profile(request):
 
 
 @login_required(login_url="/login/")
-def delete_room(request, home, room):
+def delete_room(request, room):
     """
     Страница удаления комнаты
 
@@ -959,40 +946,12 @@ def delete_room(request, home, room):
     :return: шаблон удаления комнаты
     """
     try:
-        house = Home.objects.get(id=home)
-        context = get_base_context()
-        context["title"] = "Удаление комнаты"
         room_obj = Room.objects.get(id=room)
-        if request.user == house.user:
-            if request.method == "POST":
-                personalization = Personalization.objects.get(user=request.user)
-                homes = Home.objects.filter(user=request.user)
-                rooms = Room.objects.filter(house=house)
-                if len(rooms) >= 2:
-                    for i in rooms:
-                        if i.id != room:
-                            personalization.room = i
-                            personalization.save()
-                            break
-                elif len(homes) >= 2:
-                    for i in homes:
-                        rooms = Room.objects.filter(house=i)
-                        for j in rooms:
-                            if j.id != room:
-                                personalization.room = j
-                                personalization.save()
-                                break
-                room_obj.delete()
-                return redirect("/edit/" + str(home))
-            else:
-                context["home"] = house
-                context["room"] = room_obj
-                context["form"] = HiddenForm()
-                return render(request, "houses/room/delete.html", context)
-        else:
-            return handler403(request)
+        if request.user == room_obj.house.user:
+            room_obj.delete()
+        return HttpResponse('')
     except Home.DoesNotExist or Room.DoesNotExist:
-        return handler404(request)
+        return HttpResponse('')
 
 
 @login_required(login_url="/login/")
@@ -1007,23 +966,14 @@ def delete_home(request, home):
     """
     try:
         house = Home.objects.get(id=home)
-        context = get_base_context()
-        context["title"] = "Удаление опроса"
         rooms = Room.objects.filter(house=house)
         if request.user == house.user:
-            if request.method == "POST":
-                house.delete()
-                for room in rooms:
-                    room.delete()
-                return redirect("/edit/")
-            else:
-                context["home"] = house
-                context["form"] = HiddenForm()
-                return render(request, "houses/delete.html", context)
-        else:
-            return handler403(request)
+            house.delete()
+            for room in rooms:
+                room.delete()
+        return HttpResponse('SUCCESS')
     except Room.DoesNotExist or Home.DoesNotExist:
-        return handler404(request)
+        return HttpResponse('FAIL')
 
 
 @login_required(login_url="/login/")
@@ -1065,7 +1015,7 @@ def edit_home(request, home):
 
 
 @login_required(login_url="/login/")
-def edit_room(request, home, room):
+def edit_room(request, room):
     """
     Страница редактирования комнаты
 
@@ -1076,26 +1026,27 @@ def edit_room(request, home, room):
     :return: шаблон удаления комнаты
     """
     try:
-        house = Home.objects.get(id=home)
-        if request.user == house.user:
-            room_object = Room.objects.get(id=room)
+        room_object = Room.objects.get(id=room)
+        if request.user == room_object.house.user:
             context = get_base_context()
-            context["title"] = "Редактирование варианта опроса"
-            context["home"] = house
             context["room"] = room_object
-            if request.method == "POST":
-                form = EditRoomForm(request.POST)
-                if form.is_valid():
-                    room_object.name = form.data["name"]
-                    room_object.save()
-                    return redirect("/edit/" + str(house.id))
-            else:
-                context["form"] = EditRoomForm()
-                return render(request, "houses/room/edit.html", context)
+            if request.is_ajax():
+                if request.method == "POST":
+                    print(request.body)
+                    data = json.loads(request.body)
+                    try:
+                        room_object.name = data['name']
+                        room_object.save()
+                        print(data)
+                        return HttpResponse("ok")
+                    except Exception:
+                        pass
+                else:
+                    return HttpResponse(status=404)
         else:
-            return handler403(request)
-    except Home.DoesNotExist:
-        return handler404(request)
+            return HttpResponse(status=403)
+    except Room.DoesNotExist:
+        return HttpResponse(status=404)
 
 
 @login_required(login_url="/login/")
@@ -1181,44 +1132,19 @@ def change_house(request, house_id):
         home = Home.objects.get(id=house_id)
         if home.user == request.user:
             try:
-                room = Room.objects.filter(house=home)[0]
-            except IndexError:
-                return redirect("/panel/")
-            personalization = Personalization.objects.get(user=request.user)
-            personalization.room = room
-            personalization.save()
-            return redirect("/panel/")
+                personalization = Personalization.objects.get(user=request.user)
+                personalization.home = home
+                personalization.save()
+                return redirect("/control_panel/")
+            except Personalization.DoesNotExist:
+                return handler404(request)
         else:
             return handler403(request)
     except Home.DoesNotExist:
         return handler404(request)
 
 
-@login_required(login_url="/login/")
-def change_room(request, room_id):
-    """
-    Страница редактирования домов
-
-    :param room_id: идентификатор комнаты, на которую требуется переключиться
-    :type room_id: :class:`int`
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: перенаправление на панель
-    """
-    try:
-        room = Room.objects.get(id=room_id)
-        if room.house.user == request.user:
-            personalization = Personalization.objects.get(user=request.user)
-            personalization.room = room
-            personalization.save()
-            return redirect("/panel/")
-        else:
-            return handler403(request)
-    except Home.DoesNotExist:
-        return handler404(request)
-
-
-@login_required(login_url="/login/")
+@staff_member_required
 def create_license(request):
     """
     Страница создания кода активации для устройства
@@ -1276,23 +1202,7 @@ def set_registration(request):
 
 
 @login_required(login_url='/login/')
-def relay_room_off(request):
-    """
-    Страница выключения всех реле в комнате
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: панель с выключенными реле
-    """
-    relays = Relay.objects.filter(room=Personalization.objects.get(user=request.user).room)
-    for relay in relays:
-        relay.switched = False
-        relay.save()
-    return redirect('/panel/')
-
-
-@login_required(login_url='/login/')
-def relay_room_on(request):
+def lamp_room(request, lamp, on):
     """
     Страница включения всех реле в комнате
 
@@ -1300,15 +1210,18 @@ def relay_room_on(request):
     :type request: :class:`django.http.HttpRequest`
     :return: панель с включенными реле
     """
-    relays = Relay.objects.filter(room=Personalization.objects.get(user=request.user).room)
-    for relay in relays:
-        relay.switched = True
-        relay.save()
-    return redirect('/panel/')
+    try:
+        lamp = Lamp.objects.get(id=lamp)
+        if request.user == lamp.room.house.user:
+            lamp.switched = True if on == "on" else False
+            lamp.save()
+        return HttpResponse('')
+    except Lamp.DoesNotExist:
+        return HttpResponse('')
 
 
 @login_required(login_url='/login/')
-def relay_house_on(request):
+def lamp_house(request, on):
     """
     Страница включения всех реле в доме
 
@@ -1316,28 +1229,10 @@ def relay_house_on(request):
     :type request: :class:`django.http.HttpRequest`
     :return: панель с включенными реле
     """
-    current = Personalization.objects.get(user=request.user).room.house
+    current = Personalization.objects.get(user=request.user).home
     for room in Room.objects.filter(house=current):
-        relays = Relay.objects.filter(room=room)
-        for relay in relays:
-            relay.switched = True
-            relay.save()
-    return redirect('/panel/')
-
-
-@login_required(login_url='/login/')
-def relay_house_off(request):
-    """
-    Страница выключения всех реле в доме
-
-    :param request: объект c деталями запроса
-    :type request: :class:`django.http.HttpRequest`
-    :return: панель с выключенными реле
-    """
-    current = Personalization.objects.get(user=request.user).room.house
-    for room in Room.objects.filter(house=current):
-        relays = Relay.objects.filter(room=room)
-        for relay in relays:
-            relay.switched = False
-            relay.save()
-    return redirect('/panel/')
+        lamps = Lamp.objects.filter(room=room)
+        for lamp in lamps:
+            lamp.switched = True if on == "on" else False
+            lamp.save()
+    return HttpResponse('')
