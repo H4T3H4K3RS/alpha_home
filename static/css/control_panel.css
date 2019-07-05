@@ -88,3 +88,57 @@ h4 {
     text-align: center;
     font-size: 18px;
 }
+
+.ctrl_on {
+    color: rgba(180,255,166,0.73) !important;
+}
+
+.ctrl_off {
+    color: rgba(255,154,149,0.73) !important;
+}
+
+.ctrl_on, .ctrl_off {
+    cursor: pointer;
+}
+
+.ctrl_on:hover {
+    color: rgb(180, 255, 166) !important;
+}
+
+.ctrl_off:hover {
+    color: rgba(255, 154, 149) !important;
+}
+
+.text-info-panel {
+    font-size: 21px;
+    right: 40px;
+    position: relative;
+    font-family: 'EB Garamond', serif;
+}
+
+.text-info-panel a{
+    color: rgba(66, 128, 67, 0.8) !important;
+}
+
+.air-state-content {
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(132, 132, 124, 0.3);
+    height: 250px;
+    width: 100%;
+    border-radius: 4%;
+}
+
+.number-panel {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.number-panel .symbols {
+    font-size: 40px;
+    color: rgba(132, 132, 124, 0.46) !important;
+}

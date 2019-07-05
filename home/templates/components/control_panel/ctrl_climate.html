@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="components" style=" min-height: 359px;">
+    <div style="display: flex; justify-content: space-between;">
+        <div><img src="{% static 'images/control_panel/motion-sensor.svg' %}" alt="clock" width="60px"
+                  height="60px">
+        </div>
+        <div class="params" style="font-size: 23px;">Состояние воздуха: <a style="color: rgba(150,150,141,0.82); cursor: default;">
+            Гостинная</a></div>
+        <div style="cursor: pointer;"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px"
+                                           height="45px">
+        </div>
+    </div>
+    {% comment %}Next level{% endcomment %}
+    <div style="display: flex; justify-content: space-around; font-family: 'Poiret One', cursive;">
+        <div class="air-state-content">
+            <div style="text-align: center;">Температура</div>
+            <div class="number-panel">18 <a class="symbols">°C</a></div>
+        </div>
+        <div class="air-state-content">
+            <div style="text-align: center;">Влажность</div>
+            <div class="number-panel">60 <a class="symbols">%</a></div>
+        </div>
+        <div class="air-state-content">
+            <div style="text-align: center;">Давление</div>
+            <div class="number-panel">1003 <a class="symbols">mbar</a></div>
+        </div>
+        <div class="air-state-content">
+            <div style="text-align: center;">Углекслый газ</div>
+            <div class="number-panel">712 <a class="symbols">ppm</a></div>
+        </div>
+    </div>
+</div>
+

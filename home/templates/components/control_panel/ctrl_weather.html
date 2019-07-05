@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="components" style=" min-height: 359px;">
+    <div style="display: flex; justify-content: space-between;">
+        <div><img src="{% static 'images/control_panel/cloud-with-sun-and-a-raindrop.svg' %}" alt="clock" width="60px"
+                  height="60px">
+        </div>
+        <div class="params" style="font-size: 23px;">Погода: <a style="color: rgba(150,150,141,0.82); cursor: default;">
+            Москва</a></div>
+        <div style="cursor: pointer;"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px"
+                                           height="45px">
+        </div>
+    </div>
+    {% comment %}Next level{% endcomment %}
+    <div style="display: flex; justify-content: space-around;">
+        <div class="text-info-panel">
+            <br>
+            <div>Температура: <a>16°/9°</a></div>
+            <div>Скорость ветра: <a>10 м/с</a></div>
+            <div>Направление ветра: <a>Запад</a></div>
+            <div>Влажность: <a>51 мм</a></div>
+            <div>Давление: <a>740 мм рт.ст.</a></div>
+            <div>Осадки: <a>0,2 мм</a></div>
+            <div>Вероятность осадков: <a>0,2 мм</a></div>
+            <br>
+        </div>
+        <div style="position: relative; top: 40px;">
+            {% include "components/panel/icons/cloudy.html" %}
+        </div>
+    </div>
+</div>
+
+

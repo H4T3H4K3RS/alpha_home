@@ -608,12 +608,16 @@ def set_password(request, confirm_token_1=None, confirm_token_2=None):
 
 def control_panel(request):
     context = {}
-    if type(handle_theme(request, 'dark', context)) is not HttpResponseRedirect:
-        template_name, context = handle_theme(request, 'dark', context)
+    # if type(handle_theme(request, 'dark', context)) is not HttpResponseRedirect:
+    #     template_name, context = handle_theme(request, 'dark', context)
     template_name = "control_panel.html"
-    context = add_data(request, context)
-    if context is None:
-        return redirect("/edit/")
+    # context = add_data(request, context)
+    # if context is None:
+    #     return redirect("/edit/")
+
+    context["current_house.city"] = "Москва"
+    context["current_house.name"] = "Vander Park"
+    context["api.temperature"] = 25
     return render(request, template_name, context)
 
 

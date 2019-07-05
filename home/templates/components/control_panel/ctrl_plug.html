@@ -1,0 +1,22 @@
+{% load static %}
+
+<div class="components" style=" min-height: 125px;">
+    <div style="display: flex; justify-content: space-between;">
+        <div><img src="{% static 'images/control_panel/plug.svg' %}" alt="clock" width="60px"
+                  height="60px">
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <div class="params">Гостиная</div>
+            <div class="params">Настольная розетка</div>
+        </div>
+        <div style="cursor: pointer;"><img src="{% static 'images/control_panel/more.svg' %}" alt="menu" width="45px" height="45px">
+        </div>
+    </div>
+    {% comment %}Next level{% endcomment %}
+    <div style="display: flex; justify-content: space-around; font-weight: 100; color: rgba(214,214,202,0.93);">
+        <div style="color: rgba(150,150,141,0.82);">Status: <a style="color: #FFFFF0; cursor: not-allowed;">ON</a></div>
+        <div style="cursor: pointer;">|&nbsp;<a class="ctrl_on">ON</a>&nbsp;|&nbsp;<a class="ctrl_off">OFF</a>&nbsp;|</div>
+    </div>
+</div>
+
+

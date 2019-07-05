@@ -1,46 +1,22 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<<<<<<< HEAD
-    <title>Document</title>
-    <style>
-        .bob {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .comp {
-            padding: 10px;
-            background-color: red;
-        }
-    </style>
-</head>
-<body>
-    <div class="bob">
-        <div class="comp">pups</div>
-        <div style="display: flex; justify-content: space-around;">
-            <div class="comp">wcwecw</div>
-            <div class="comp">wecwec</div>
-            <div class="comp">wscdewscde</div>
-            <div class="comp">wsdcewed</div>
-        </div>
-    </div>
-=======
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Noto+Sans+TC:300|Open+Sans+Condensed:300&display=swap"
           rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Poiret+One&display=swap" rel="stylesheet">
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <!-- END of FONTS -->
     <link rel="icon" href="{% static 'images/control-panel.png' %}">
     <title>Панель</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/control_panel.css' %}">
-    <!-- END of Custom CSS -->
     <!-- Custom JS -->
     <script src="{% static 'css/animate.css' %}"></script>
     <script src="{% static 'js/time.js' %}"></script>
@@ -66,6 +42,11 @@
     <script type="text/javascript" src="{% static 'mdb-pro/js/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'mdb-pro/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'mdb-pro/js/mdb.min.js' %}"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/control_panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/w_ico.css' %}">
+
+    <!-- END of Custom CSS -->
 </head>
 <body>
 {% include 'components/control_panel/notification.html' %}
@@ -86,15 +67,19 @@
         <div class="col-10 blocks" style="background-color: rgb(12, 12, 12); display: flex; flex-direction: column;">
 
             {% include 'components/control_panel/ctrl_lamp_classic.html' %}
+            {% include 'components/control_panel/ctrl_weather.html' %}
+            {% include 'components/control_panel/ctrl_climate.html' %}
+            {% include 'components/control_panel/ctrl_lock.html' %}
+            {% include 'components/control_panel/ctrl_plug.html' %}
+
         </div>
     </div>
 </main>
 
 
 <footer style="display: flex; justify-content: space-between;">
-    <div>&copy; AlphaHome 2019</div>
+    <div>&nbsp;&copy; AlphaHome 2019</div>
     <div>by O.Vsevolod and U.Murat&nbsp;</div>
 </footer>
->>>>>>> c3d86ce1c138b91d950c7564c924136793657f62
 </body>
 </html>
